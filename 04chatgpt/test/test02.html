@@ -1,0 +1,1690 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>MY PIZZA - 나만의 피자</title>
+
+  <link rel="stylesheet" href="css/style2.css">
+  <script src="js/script.js" defer></script>
+
+  <style>
+
+    /* =========================
+       원형 BEST MENU
+    ========================= */
+
+    .best-menu-wrap {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      width: 100%;
+      max-width: 470px;
+      margin: 12px auto;
+      text-align: left;
+      box-sizing: border-box;
+    }
+
+    .best-menu-label {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 80px;
+      height: 80px;
+      aspect-ratio: 1 / 1;
+      border-radius: 50%;
+      background-color: #ad3026;
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      line-height: 1.4;
+      text-align: center;
+      padding: 0;
+      box-sizing: border-box;
+      flex-shrink: 0;
+    }
+
+
+    /* =========================
+       피자 사진 영역 크기 고정
+    ========================= */
+
+    .pizza-stage {
+      width: 100%;
+      max-width: 470px;
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .pizza-stage .pizza-board {
+      width: 100%;
+      max-width: 470px;
+      aspect-ratio: 1 / 1;
+      background: transparent;
+      border-radius: 0;
+      border: none;
+      box-shadow: none;
+      overflow: hidden;
+      position: relative;
+      box-sizing: border-box;
+    }
+
+
+    /* 모든 피자 사이즈의 사진 크기 고정 */
+
+    .pizza-stage #pizza,
+    .pizza-stage #pizza.size-S,
+    .pizza-stage #pizza.size-M,
+    .pizza-stage #pizza.size-L {
+      width: 100% !important;
+      height: 100% !important;
+      max-width: 100% !important;
+      max-height: 100% !important;
+      aspect-ratio: 1 / 1;
+      background: transparent;
+      border-radius: 0;
+      border: none;
+      box-shadow: none;
+      overflow: hidden;
+      position: relative;
+      transform: none !important;
+      scale: 1 !important;
+      margin: 0 !important;
+      box-sizing: border-box;
+    }
+
+
+    /* 피자 이미지 크기 고정 */
+
+    .pizza-stage .pizza-image {
+      display: block;
+      width: 100% !important;
+      height: 100% !important;
+      max-width: 100% !important;
+      max-height: 100% !important;
+      object-fit: contain;
+      object-position: center;
+      border-radius: 0;
+      transform: none !important;
+      scale: 1 !important;
+    }
+
+
+    /* 추가 토핑 표시 영역 */
+
+    .pizza-stage .topping-layer {
+      position: absolute;
+      inset: 15%;
+      border-radius: 0;
+      pointer-events: none;
+    }
+
+    .home-image img,
+    .menu-image img {
+      object-fit: contain;
+      border-radius: 0;
+    }
+
+
+    /* =========================
+       피자 소개 영역
+    ========================= */
+
+    .pizza-info {
+      width: 100%;
+      max-width: 470px;
+      margin: 0 auto 20px;
+      padding: 0 5px 20px;
+      border-bottom: 1px solid #e5d8c4;
+      text-align: left;
+    }
+
+
+    /* SIGNATURE PIZZA와 별점 가로 배치 */
+
+    .pizza-info-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+
+    /* SIGNATURE PIZZA 표시 */
+
+    .signature-label {
+      display: inline-block;
+      padding: 7px 12px;
+      background-color: #ad3026;
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      border-radius: 4px;
+    }
+
+
+    /* 별점 영역 */
+
+    .pizza-rating {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      white-space: nowrap;
+    }
+
+
+    /* 황금색 별 */
+
+    .rating-star {
+      color: #e5a321;
+      font-size: 23px;
+    }
+
+
+    /* 별점 숫자 */
+
+    .rating-score {
+      color: #392820;
+      font-size: 17px;
+      font-weight: 700;
+    }
+
+
+    /* 피자 이름 */
+
+    .pizza-name {
+      margin: 0;
+      color: #392820;
+      font-size: 26px;
+      font-weight: 800;
+      line-height: 1.4;
+    }
+
+
+    /* =========================
+       피자 재료 영역
+       재료 4개를 한 줄로 배치
+    ========================= */
+
+    .ingredient-list {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-items: center;
+      justify-content: flex-start;
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      gap: 5px;
+      margin-top: 15px;
+      overflow-x: auto;
+      box-sizing: border-box;
+    }
+
+
+    /* 둥근 사각형 재료 표시 */
+
+    .ingredient-tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+      gap: 4px;
+      padding: 6px 7px;
+      background-color: #fffaf3;
+      color: #392820;
+      border: 1px solid #dac9b4;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 1.5;
+      white-space: nowrap;
+      box-sizing: border-box;
+    }
+
+
+    /* 재료 아이콘 크기 */
+
+    .ingredient-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      font-size: 18px;
+      font-weight: normal;
+      line-height: 1;
+      flex-shrink: 0;
+      font-family: "Apple Color Emoji",
+                   "Segoe UI Emoji",
+                   "Noto Color Emoji",
+                   sans-serif;
+    }
+
+
+    /* 갈색 버섯 및 초록색 잎 아이콘 */
+
+    .ingredient-icon svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+      flex-shrink: 0;
+    }
+
+
+    /* =========================
+       주문 옵션 선택 제목
+    ========================= */
+
+    .order-option-heading {
+      display: block;
+      font-size: 30px;
+      font-weight: 900;
+      color: #392820;
+      line-height: 1.4;
+      margin: 0 0 12px;
+      text-align: left;
+    }
+
+
+    /* =========================
+       순서 번호
+    ========================= */
+
+    .step-number {
+      display: inline-block;
+      color: #ad3026;
+      font-size: 18px;
+      font-weight: 800;
+      margin-right: 8px;
+      vertical-align: baseline;
+    }
+
+
+    /* =========================
+       필수 표시
+    ========================= */
+
+    .required-label {
+      display: inline-block;
+      color: #ad3026;
+      background-color: #fff0ee;
+      border: 1px solid #ad3026;
+      border-radius: 6px;
+      padding: 3px 8px;
+      margin-left: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.4;
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+
+
+    /* =========================
+       ★ 피자 사이즈 디자인 수정 ★
+    ========================= */
+
+    /* 사이즈 선택 내용 세로 배치 */
+
+    .size-options .size-option .size-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-align: center;
+      box-sizing: border-box;
+    }
+
+
+    /* S, M, L 회색 둥근 사각형 */
+
+    .size-options .size-option .size-letter {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      width: 44px;
+      height: 36px;
+
+      background-color: #eeeeee !important;
+      color: #777777 !important;
+
+      border: none;
+      border-radius: 10px;
+
+      font-size: 20px;
+      font-weight: 800;
+      line-height: 1;
+
+      padding: 0;
+      margin: 0 auto;
+
+      box-sizing: border-box;
+      flex-shrink: 0;
+    }
+
+
+    /* 스몰, 미디엄, 라지 한글 이름 */
+
+    .size-options .size-option .size-name {
+      display: block;
+
+      background: transparent;
+      border: none;
+
+      color: #392820 !important;
+
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.5;
+
+      padding: 0;
+      margin: 0;
+
+      white-space: nowrap;
+    }
+
+
+    /* 기존 가격 표시 */
+
+    .size-options .size-option .size-price {
+      display: block;
+      color: #777777;
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 1.5;
+      white-space: nowrap;
+    }
+
+
+    /* =========================
+       모바일 화면 크기 조절
+    ========================= */
+
+    @media (max-width: 650px) {
+
+      .best-menu-wrap {
+        margin: 8px auto;
+      }
+
+      .best-menu-label {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        font-size: 10px;
+        letter-spacing: 0.5px;
+        padding: 0;
+      }
+
+      .pizza-info {
+        margin-bottom: 15px;
+        padding-bottom: 15px;
+      }
+
+      .signature-label {
+        font-size: 9px;
+        padding: 5px 6px;
+        letter-spacing: 0;
+      }
+
+      .rating-star {
+        font-size: 17px;
+      }
+
+      .rating-score {
+        font-size: 13px;
+      }
+
+      .pizza-name {
+        font-size: 17px;
+      }
+
+      .order-option-heading {
+        font-size: 20px;
+        font-weight: 900;
+        margin-bottom: 10px;
+      }
+
+      .step-number {
+        font-size: 15px;
+        margin-right: 5px;
+      }
+
+      .required-label {
+        font-size: 10px;
+        padding: 2px 6px;
+        margin-left: 5px;
+      }
+
+      .ingredient-list {
+        flex-wrap: nowrap;
+        gap: 3px;
+        margin-top: 10px;
+      }
+
+      .ingredient-tag {
+        font-size: 10px;
+        padding: 4px 5px;
+        border-radius: 8px;
+        gap: 3px;
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+
+      .ingredient-icon {
+        width: 16px;
+        height: 16px;
+        font-size: 14px;
+      }
+
+
+      /* ★ 모바일 피자 사이즈 디자인 ★ */
+
+      .size-options .size-option .size-content {
+        gap: 5px;
+      }
+
+      .size-options .size-option .size-letter {
+        width: 32px;
+        height: 28px;
+        border-radius: 7px;
+        font-size: 15px;
+      }
+
+      .size-options .size-option .size-name {
+        font-size: 12px;
+      }
+
+      .size-options .size-option .size-price {
+        font-size: 10px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+  <!-- =========================
+       상단 메뉴
+  ========================= -->
+
+  <header class="header">
+
+    <button type="button"
+            class="logo"
+            data-page="home">
+      🍕 MY PIZZA
+    </button>
+
+    <nav class="navigation" aria-label="메인 메뉴">
+
+      <button type="button"
+              class="nav-link"
+              data-page="home">
+        HOME
+      </button>
+
+      <button type="button"
+              class="nav-link"
+              data-page="menu">
+        MENU
+      </button>
+
+      <button type="button"
+              class="nav-link order-nav active"
+              data-page="order"
+              aria-current="page">
+        피자 주문
+      </button>
+
+    </nav>
+
+  </header>
+
+
+  <main>
+
+    <!-- =========================
+         HOME 화면
+    ========================= -->
+
+    <section id="home" class="page" hidden>
+
+      <div class="home-layout">
+
+        <div class="home-text">
+
+          <span class="eyebrow">
+            WELCOME TO MY PIZZA
+          </span>
+
+          <h1>
+            취향대로 만드는<br>
+            맛있는 피자
+          </h1>
+
+          <p>
+            좋아하는 사이즈와 토핑을 선택하여<br>
+            나만의 특별한 피자를 완성해 보세요.
+          </p>
+
+          <button type="button"
+                  class="primary-btn"
+                  data-page="order">
+            피자 주문하기
+          </button>
+
+        </div>
+
+
+        <!-- HOME 피자 사진 -->
+
+        <div class="home-image">
+
+          <img src="images/tp.png"
+               alt="대표 피자 사진">
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         MENU 화면
+    ========================= -->
+
+    <section id="menu" class="page" hidden>
+
+      <div class="menu-container">
+
+        <div class="menu-heading">
+
+          <h1>피자 메뉴</h1>
+
+          <span class="eyebrow">
+            OUR MENU
+          </span>
+
+          <p>
+            원하시는 피자 사이즈를 선택해 주세요.
+          </p>
+
+        </div>
+
+
+        <div class="menu-grid">
+
+          <!-- Small 피자 -->
+
+          <article class="menu-card">
+
+            <div class="menu-image">
+
+              <img src="images/p0.jpg"
+                   alt="Small 피자"
+                   class="menu-small">
+
+            </div>
+
+            <h2>Small</h2>
+
+            <p>8인치</p>
+
+            <strong>12,000원</strong>
+
+            <button type="button"
+                    class="primary-btn"
+                    data-order-size="S">
+              선택하기
+            </button>
+
+          </article>
+
+
+          <!-- Medium 피자 -->
+
+          <article class="menu-card">
+
+            <div class="menu-image">
+
+              <img src="images/p0.jpg"
+                   alt="Medium 피자"
+                   class="menu-medium">
+
+            </div>
+
+            <h2>Medium</h2>
+
+            <p>10인치</p>
+
+            <strong>15,000원</strong>
+
+            <button type="button"
+                    class="primary-btn"
+                    data-order-size="M">
+              선택하기
+            </button>
+
+          </article>
+
+
+          <!-- Large 피자 -->
+
+          <article class="menu-card">
+
+            <div class="menu-image">
+
+              <img src="images/p0.jpg"
+                   alt="Large 피자"
+                   class="menu-large">
+
+            </div>
+
+            <h2>Large</h2>
+
+            <p>13인치</p>
+
+            <strong>18,000원</strong>
+
+            <button type="button"
+                    class="primary-btn"
+                    data-order-size="L">
+              선택하기
+            </button>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         피자 주문 화면
+    ========================= -->
+
+    <section id="order" class="page">
+
+      <div class="order-layout">
+
+
+        <!-- =========================
+             왼쪽 피자 사진 영역
+        ========================= -->
+
+        <div class="pizza-preview">
+
+          <div class="preview-content">
+
+            <h1>나만의 피자</h1>
+
+            <span class="eyebrow">
+              BUILD YOUR OWN PIZZA
+            </span>
+
+
+            <!-- 원형 BEST MENU -->
+
+            <div class="best-menu-wrap">
+
+              <span class="best-menu-label">
+
+                <span>BEST</span>
+                <span>MENU</span>
+
+              </span>
+
+            </div>
+
+
+            <!-- =========================
+                 피자 사진 영역
+                 사진 영역 크기 고정
+            ========================= -->
+
+            <div class="pizza-stage">
+
+              <div class="pizza-board">
+
+                <div id="pizza"
+                     class="pizza size-M">
+
+
+                  <!-- 사이즈에 따라 변경되는 사진 -->
+
+                  <img id="pizza-main-image"
+                       src="images/p0.jpg"
+                       alt="Medium 시그니처 페퍼로니 피자"
+                       class="pizza-image"
+                       width="600"
+                       height="600">
+
+
+                  <!-- 추가 토핑 표시 영역 -->
+
+                  <div id="topping-layer"
+                       class="topping-layer"
+                       aria-hidden="true">
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <!-- =========================
+                 피자 소개 영역
+            ========================= -->
+
+            <div class="pizza-info">
+
+
+              <!-- SIGNATURE PIZZA 및 별점 -->
+
+              <div class="pizza-info-top">
+
+                <span class="signature-label">
+                  SIGNATURE PIZZA
+                </span>
+
+                <span class="pizza-rating"
+                      aria-label="5점 만점에 4.5점">
+
+                  <span class="rating-star"
+                        aria-hidden="true">
+                    ★
+                  </span>
+
+                  <span class="rating-score">
+                    4.5
+                  </span>
+
+                </span>
+
+              </div>
+
+
+              <!-- 피자 이름 -->
+
+              <h2 class="pizza-name">
+                시그니처 페퍼로니 피자
+              </h2>
+
+
+              <!-- 피자 소개 문구 -->
+
+              <p class="preview-guide">
+                쫄깃한 도우 위에 진한 토마토 소스의 풍미 가득한 치즈,<br>그리고 페퍼로니 한가득!
+              </p>
+
+
+              <!-- =========================
+                   재료 4개 한 줄 배치
+              ========================= -->
+
+              <div class="ingredient-list">
+
+
+                <!-- 토마토 모양 -->
+
+                <span class="ingredient-tag">
+
+                  <span class="ingredient-icon"
+                        aria-hidden="true">
+                    🍅
+                  </span>
+
+                  토마토 소스
+
+                </span>
+
+
+                <!-- 삼각형 치즈 모양 -->
+
+                <span class="ingredient-tag">
+
+                  <span class="ingredient-icon"
+                        aria-hidden="true">
+                    🧀
+                  </span>
+
+                  모짜렐라 치즈
+
+                </span>
+
+
+                <!-- 갈색 버섯 아이콘 -->
+
+                <span class="ingredient-tag">
+
+                  <span class="ingredient-icon"
+                        aria-hidden="true">
+
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         viewBox="0 0 64 64"
+                         width="24"
+                         height="24"
+                         focusable="false">
+
+
+                      <!-- 베이지색 버섯 기둥 -->
+
+                      <path d="M25 30
+                               L39 30
+                               L43 53
+                               Q43 59 32 59
+                               Q21 59 21 53 Z"
+                            fill="#eadbc4">
+                      </path>
+
+
+                      <!-- 갈색 버섯 갓 -->
+
+                      <path d="M5 32
+                               C5 16 17 5 32 5
+                               C47 5 59 16 59 32
+                               Q59 38 32 38
+                               Q5 38 5 32 Z"
+                            fill="#966039">
+                      </path>
+
+
+                      <!-- 버섯 갓의 밝은 무늬 -->
+
+                      <ellipse cx="19"
+                               cy="22"
+                               rx="5"
+                               ry="4"
+                               fill="#fff3dd">
+                      </ellipse>
+
+                      <ellipse cx="39"
+                               cy="15"
+                               rx="5"
+                               ry="4"
+                               fill="#fff3dd">
+                      </ellipse>
+
+                      <ellipse cx="47"
+                               cy="29"
+                               rx="5"
+                               ry="4"
+                               fill="#fff3dd">
+                      </ellipse>
+
+                    </svg>
+
+                  </span>
+
+                  버섯
+
+                </span>
+
+
+                <!-- 초록색 잎 한 개 -->
+
+                <span class="ingredient-tag">
+
+                  <span class="ingredient-icon"
+                        aria-hidden="true">
+
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         viewBox="0 0 32 32"
+                         width="24"
+                         height="24"
+                         focusable="false">
+
+
+                      <!-- 초록색 잎 -->
+
+                      <path d="M5 25
+                               C0 12 13 5 29 3
+                               C29 18 19 29 5 25 Z"
+                            fill="#659b3c"
+                            stroke="#48752b"
+                            stroke-width="1">
+                      </path>
+
+
+                      <!-- 잎의 가운데 줄기 -->
+
+                      <path d="M3 29
+                               Q12 17 24 8"
+                            fill="none"
+                            stroke="#38652a"
+                            stroke-width="1.8"
+                            stroke-linecap="round">
+                      </path>
+
+
+                      <!-- 잎맥 -->
+
+                      <path d="M12 19 L10 12
+                               M17 14 L23 15"
+                            fill="none"
+                            stroke="#a4c778"
+                            stroke-width="1.2"
+                            stroke-linecap="round">
+                      </path>
+
+                    </svg>
+
+                  </span>
+
+                  올리브
+
+                </span>
+
+              </div>
+
+            </div>
+
+
+            <!-- 현재 피자 사이즈 -->
+
+            <h2 id="pizza-size-label">
+              Medium · 10인치
+            </h2>
+
+            <p class="preview-guide">
+              좋아하는 토핑으로 피자를 완성해 보세요.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <!-- =========================
+             오른쪽 주문 옵션 영역
+        ========================= -->
+
+        <div class="order-panel">
+
+          <div class="order-option-heading">
+            <strong>주문 옵션 선택</strong>
+          </div>
+
+          <h2 class="order-title"></h2>
+
+
+          <form id="order-form" autocomplete="off">
+
+
+            <!-- =========================
+                 01. 피자 사이즈 선택
+            ========================= -->
+
+            <fieldset>
+
+              <legend>
+
+                <span class="step-number">
+                  01.
+                </span>
+
+                피자 사이즈 선택
+
+                <span class="required-label">
+                  필수
+                </span>
+
+              </legend>
+
+
+              <!-- =========================
+                   ★ 피자 사이즈 디자인 수정 ★
+              ========================= -->
+
+              <div class="size-options">
+
+
+                <!-- S : 스몰 -->
+
+                <label class="size-option">
+
+                  <input type="radio"
+                         name="size"
+                         value="S"
+                         required>
+
+                  <span class="size-content">
+
+                    <!-- 회색 둥근 사각형 -->
+
+                    <b class="size-letter">
+                      S
+                    </b>
+
+
+                    <!-- 한글 사이즈 이름 -->
+
+                    <strong class="size-name">
+                      스몰   12,000원
+                    </strong>
+
+
+
+
+                  </span>
+
+                </label>
+
+
+                <!-- M : 미디엄 -->
+
+                <label class="size-option">
+
+                  <input type="radio"
+                         name="size"
+                         value="M"
+                         checked>
+
+                  <span class="size-content">
+
+                    <!-- 회색 둥근 사각형 -->
+
+                    <b class="size-letter">
+                      M
+                    </b>
+
+
+                    <!-- 한글 사이즈 이름 -->
+
+                    <strong class="size-name">
+                      미디엄    15,000원
+                    </strong>
+
+                  </span>
+
+                </label>
+
+
+                <!-- L : 라지 -->
+
+                <label class="size-option">
+
+                  <input type="radio"
+                         name="size"
+                         value="L">
+
+                  <span class="size-content">
+
+                    <!-- 회색 둥근 사각형 -->
+
+                    <b class="size-letter">
+                      L
+                    </b>
+
+
+                    <!-- 한글 사이즈 이름 -->
+
+                    <strong class="size-name">
+                      라지   18,000원
+                    </strong>
+
+
+                  </span>
+
+                </label>
+
+              </div>
+
+            </fieldset>
+
+
+            <!-- =========================
+                 02. 추가 토핑
+            ========================= -->
+
+            <fieldset class="topping-fieldset">
+
+              <legend>
+
+                <span class="step-number">
+                  02.
+                </span>
+
+                추가 토핑
+
+              </legend>
+
+
+              <div class="topping-options">
+
+
+                <!-- 치즈 -->
+
+                <label class="topping-option">
+
+                  <input type="checkbox"
+                         name="topping"
+                         value="cheese">
+
+                  <span class="topping-name">
+                    치즈
+                  </span>
+
+                  <span class="topping-price">
+                    +2,000원
+                  </span>
+
+                </label>
+
+
+                <!-- 페퍼로니 -->
+
+                <label class="topping-option">
+
+                  <input type="checkbox"
+                         name="topping"
+                         value="pepperoni"
+                         checked>
+
+                  <span class="topping-name">
+                    페퍼로니
+                  </span>
+
+                  <span class="topping-price">
+                    +1,500원
+                  </span>
+
+                </label>
+
+
+                <!-- 버섯 -->
+
+                <label class="topping-option">
+
+                  <input type="checkbox"
+                         name="topping"
+                         value="mushroom">
+
+                  <span class="topping-name">
+                    버섯
+                  </span>
+
+                  <span class="topping-price">
+                    +1,000원
+                  </span>
+
+                </label>
+
+
+                <!-- 올리브 -->
+
+                <label class="topping-option">
+
+                  <input type="checkbox"
+                         name="topping"
+                         value="olive">
+
+                  <span class="topping-name">
+                    올리브
+                  </span>
+
+                  <span class="topping-price">
+                    +1,000원
+                  </span>
+
+                </label>
+
+              </div>
+
+            </fieldset>
+
+
+            <!-- =========================
+                 03. 주문 수량
+            ========================= -->
+
+            <div class="quantity-row">
+
+              <span class="option-title">
+
+                <span class="step-number">
+                  03.
+                </span>
+
+                수량
+
+              </span>
+
+
+              <div class="quantity-control">
+
+                <button type="button"
+                        id="minus-btn"
+                        aria-label="수량 감소">
+                  −
+                </button>
+
+                <output id="quantity"
+                        aria-live="polite">
+                  1
+                </output>
+
+                <button type="button"
+                        id="plus-btn"
+                        aria-label="수량 증가">
+                  +
+                </button>
+
+              </div>
+
+            </div>
+
+
+            <!-- =========================
+                 04. 주문 요청사항
+            ========================= -->
+
+            <div class="request-section">
+
+              <label for="request"
+                     class="option-title">
+
+                <span class="step-number">
+                  04.
+                </span>
+
+                주문 요청사항
+
+              </label>
+
+
+              <textarea id="request"
+                        name="request"
+                        maxlength="200"
+                        rows="3"
+                        placeholder="요청사항을 입력해 주세요."
+                        aria-describedby="char-count"></textarea>
+
+              <p id="char-count"
+                 class="char-count">
+                0/200자
+              </p>
+
+            </div>
+
+
+            <!-- =========================
+                 총 주문 금액
+            ========================= -->
+
+            <div class="price-section">
+
+              <p>총 주문 금액</p>
+
+              <strong id="total-price"
+                      aria-live="polite">
+                16,500원
+              </strong>
+
+            </div>
+
+
+            <!-- 오류 메시지 -->
+
+            <p id="form-error"
+               class="error-message"
+               role="alert"></p>
+
+
+            <!-- 주문 및 초기화 버튼 -->
+
+            <div class="order-buttons">
+
+              <button type="submit"
+                      id="order-btn"
+                      class="primary-btn">
+                주문하기
+              </button>
+
+              <button type="reset"
+                      class="reset-btn">
+                초기화
+              </button>
+
+            </div>
+
+          </form>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       주문 확인 팝업
+  ========================= -->
+
+  <dialog id="confirm-dialog"
+          aria-labelledby="confirm-title">
+
+    <div class="modal-content">
+
+      <div class="modal-icon"
+           aria-hidden="true">
+        🍕
+      </div>
+
+      <h2 id="confirm-title">
+        주문 내용 확인
+      </h2>
+
+
+      <div class="modal-summary">
+
+        <p>
+          사이즈:
+          <strong id="confirm-size"></strong>
+        </p>
+
+        <p>
+          추가 토핑:
+          <strong id="confirm-toppings"></strong>
+        </p>
+
+        <p>
+          수량:
+          <strong id="confirm-quantity"></strong>
+        </p>
+
+        <p>
+          요청사항:
+          <strong id="confirm-request"></strong>
+        </p>
+
+        <p class="modal-total">
+          총 주문 금액:
+          <strong id="confirm-total"></strong>
+        </p>
+
+      </div>
+
+
+      <p class="demo-notice">
+        연습용 웹사이트이며 실제 주문은 접수되지 않습니다.
+      </p>
+
+
+      <div class="modal-buttons">
+
+        <button type="button"
+                id="cancel-btn"
+                class="reset-btn"
+                autofocus>
+          취소
+        </button>
+
+        <button type="button"
+                id="confirm-btn"
+                class="primary-btn">
+          주문 확인
+        </button>
+
+      </div>
+
+    </div>
+
+  </dialog>
+
+
+  <!-- =========================
+       주문 완료 팝업
+  ========================= -->
+
+  <dialog id="complete-dialog"
+          aria-labelledby="complete-title">
+
+    <div class="modal-content complete-content">
+
+      <div class="complete-icon"
+           aria-hidden="true">
+        ✓
+      </div>
+
+      <h2 id="complete-title">
+        주문이 완료되었습니다!
+      </h2>
+
+      <p>
+        나만의 피자가 완성되었습니다.
+      </p>
+
+      <p class="demo-notice">
+        실제 주문 및 결제는 진행되지 않습니다.
+      </p>
+
+      <button type="button"
+              id="complete-btn"
+              class="primary-btn"
+              autofocus>
+        다시 주문하기
+      </button>
+
+    </div>
+
+  </dialog>
+
+
+  <!-- =========================
+       하단 푸터
+  ========================= -->
+
+  <footer>
+
+    © MY PIZZA · 연습용 피자 주문 웹사이트
+
+  </footer>
+
+
+  <!-- =========================
+       기존 JavaScript
+       S, M, L 선택 시
+       피자 사진만 변경
+  ========================= -->
+
+  <script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+      const pizzaImage = document.getElementById("pizza-main-image");
+
+      const pizza = document.getElementById("pizza");
+
+      const orderForm = document.getElementById("order-form");
+
+      const sizeInputs = document.querySelectorAll(
+        '#order-form input[name="size"]'
+      );
+
+
+      /* =========================
+         사이즈별 피자 사진 경로
+      ========================= */
+
+      const pizzaImages = {
+
+        S: {
+          src: "images/small.png",
+          alt: "Small 시그니처 페퍼로니 피자"
+        },
+
+        M: {
+          src: "images/p0.jpg",
+          alt: "Medium 시그니처 페퍼로니 피자"
+        },
+
+        L: {
+          src: "images/large.png",
+          alt: "Large 시그니처 페퍼로니 피자"
+        }
+
+      };
+
+
+      /* 사진을 미리 불러오기 */
+
+      Object.values(pizzaImages).forEach(function (item) {
+
+        const preloadImage = new Image();
+
+        preloadImage.src = item.src;
+
+      });
+
+
+      let imageRequest = 0;
+
+
+      /* =========================
+         피자 이미지 변경 함수
+      ========================= */
+
+      function updatePizzaImage() {
+
+        const selectedSize = document.querySelector(
+          '#order-form input[name="size"]:checked'
+        );
+
+        if (!selectedSize) {
+          return;
+        }
+
+        const size = selectedSize.value;
+
+        const selectedImage = pizzaImages[size];
+
+        if (!selectedImage) {
+          return;
+        }
+
+
+        /* 이전 이미지 요청 구분 */
+
+        const currentRequest = ++imageRequest;
+
+
+        /* 이미지가 정상적으로 로드되면 변경 */
+
+        const nextImage = new Image();
+
+        nextImage.onload = function () {
+
+          if (currentRequest !== imageRequest) {
+            return;
+          }
+
+          pizzaImage.src = selectedImage.src;
+
+          pizzaImage.alt = selectedImage.alt;
+
+        };
+
+        nextImage.onerror = function () {
+
+          if (currentRequest !== imageRequest) {
+            return;
+          }
+
+          console.warn(
+            "피자 사진을 불러올 수 없습니다:",
+            selectedImage.src
+          );
+
+        };
+
+        nextImage.src = selectedImage.src;
+
+      }
+
+
+      /* S, M, L 선택 시 이미지 변경 */
+
+      sizeInputs.forEach(function (input) {
+
+        input.addEventListener("change", updatePizzaImage);
+
+      });
+
+
+      /* MENU 화면에서 사이즈 선택 시 */
+
+      document.querySelectorAll("[data-order-size]")
+        .forEach(function (button) {
+
+          button.addEventListener("click", function () {
+
+            requestAnimationFrame(updatePizzaImage);
+
+          });
+
+        });
+
+
+      /* 초기화 버튼 클릭 시 기본 사진으로 복귀 */
+
+      orderForm.addEventListener("reset", function () {
+
+        requestAnimationFrame(updatePizzaImage);
+
+      });
+
+
+      /* 기존 JavaScript에서 사이즈 클래스 변경 시 */
+
+      const sizeObserver = new MutationObserver(function () {
+
+        updatePizzaImage();
+
+      });
+
+      sizeObserver.observe(pizza, {
+
+        attributes: true,
+
+        attributeFilter: ["class"]
+
+      });
+
+
+      /* 처음 화면이 열릴 때 기본 M 사진 표시 */
+
+      updatePizzaImage();
+
+    });
+
+  </script>
+
+</body>
+
+</html>

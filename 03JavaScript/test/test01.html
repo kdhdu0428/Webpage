@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>**예약</title>
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"><script src="https://code.jquery.com/jquery-1.12.4.js"></script><script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    </head>
+    <body>
+
+        <h2>예약하기</h2>
+        <div>
+            <input type="text" placeholder="예약자 이름" id="nameInput">
+            <input type="number" placeholder="인원 수" id="countInput">
+            <input type="text" placeholder="예약일 YYYY-MM-DD" id="dateInput" malength="10">
+            <!--<script>$(function() {$("#dayInput").daypicker();});</script>-->
+
+            <button type="button" id="confirmBtn">예약하기</button>
+            <!--button type="button">예약취소</button>-->
+        </div>
+
+        <script>// 자바스크립트 코드 작성 // alert("자바스크립트 작동");
+           // 변수 : 값을 저장하는 공간
+           // 버튼요소 가져오기 : const confirmBtn = document.querySelector("#confirmBtn");
+           //$("#dateInput").datepicker();
+
+           const confirmBtn = document.querySelector("#confirmBtn");
+           // 버튼에 클릭 이벤트 등록
+           confirmBtn.addEventListener("click", () => {
+
+                // 입력 태그 요소 가져오기
+                const nameInput = document.querySelector("#nameInput");
+                const countInput = document.querySelector("#countInput");
+                const dateInput = document.querySelector("#dateInput");
+
+                // 입력 요소로 부터 입력 값 가져오기
+                const name = nameInput.value;
+                const count = countInput.value;
+                const date = dateInput.value;
+
+                // 가져온 입력 값이 비워진 상태인지 점검
+                // 만약 name이 비워져 있다면 (""와 같다면)
+                if(name == "" || name==Number) {
+                    alert("예약자 이름을 입력하세요");
+                    return;}
+
+                if(count == ""|| count == Text) {
+                    alert("예약 인원 수를 입력하세요"); return;}
+
+                if(date =="") {
+                    alert("예약일을 입력하세요"); return;}//중단
+                
+                    const regex = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/;
+                if(!regex.test(date)) {
+                    alert("유효하지 않은 날짜입니다."); return;}//중단
+
+                alert(name + "님, " + date + "에 " + count + "명 예약이 접수되었습니다.");
+           });
+           
+        </script>
+    </body>
+</html>

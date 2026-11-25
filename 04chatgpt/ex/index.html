@@ -1,0 +1,1183 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f9fd">
+  <meta name="description" content="새로운 도전을 하며 성장하는 IT 분야 지원자 홍길동의 개인 소개 웹페이지입니다.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="홍길동 | Personal Page">
+  <meta property="og:description" content="새로운 도전을 하며 성장하는 IT 분야 지원자 홍길동입니다.">
+  <title>홍길동 | Personal Page</title>
+
+  <style>
+    /* ==========================================
+       1. 기본 설정 및 색상
+       ========================================== */
+    :root {
+      --ink: #19334f;
+      --muted: #58728a;
+      --blue: #418fc9;
+      --blue-light: #e4f2fc;
+      --line: #d6e7f5;
+      --white: #ffffff;
+      --background: #f4f9fd;
+      --shadow: 0 14px 38px rgba(37,92,136,.055);
+      --radius: 20px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 98px;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: Pretendard, "Apple SD Gothic Neo",
+        "Malgun Gothic", "Noto Sans KR", system-ui, sans-serif;
+      line-height: 1.7;
+      word-break: keep-all;
+      background: var(--background);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    :focus-visible {
+      outline: 3px solid #277fbf;
+      outline-offset: 4px;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .icon {
+      width: 24px;
+      height: 24px;
+      flex: none;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.85;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* ==========================================
+       2. 전체 배경 및 레이아웃
+       ========================================== */
+    .site-shell {
+      min-height: 100vh;
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .site-shell::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      top: 75px;
+      right: -15%;
+      width: 80%;
+      height: 490px;
+      border-radius: 50% 0 0 60%;
+      transform: rotate(-15deg);
+      background: radial-gradient(
+        ellipse at 65% 35%,
+        rgba(191,224,249,.66),
+        rgba(216,237,252,.36) 65%,
+        transparent 76%
+      );
+      pointer-events: none;
+    }
+
+    .site-shell::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      bottom: -90px;
+      left: -10%;
+      width: 120%;
+      height: 170px;
+      border-radius: 45% 50% 0 0 / 85% 80% 0 0;
+      background: #e2f1fb;
+      pointer-events: none;
+    }
+
+    .container {
+      width: min(1330px, calc(100% - 84px));
+      margin-inline: auto;
+    }
+
+    /* ==========================================
+       3. 상단 메뉴
+       ========================================== */
+    .header {
+      position: relative;
+      z-index: 2;
+    }
+
+    .header-inner {
+      min-height: 88px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      gap: 12px;
+      align-items: center;
+      font-weight: 800;
+      font-size: 23px;
+      letter-spacing: -.06em;
+      white-space: nowrap;
+    }
+
+    .brand-mark {
+      width: 30px;
+      height: 30px;
+      position: relative;
+    }
+
+    .brand-mark::before,
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      width: 15px;
+      height: 22px;
+      border-radius: 11px 11px 11px 2px;
+      background: #78b9e7;
+      transform: rotate(40deg);
+      left: 4px;
+      top: 3px;
+    }
+
+    .brand-mark::after {
+      background: #b5dafa;
+      left: 13px;
+      top: 8px;
+      opacity: .85;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 9px;
+    }
+
+    .nav a {
+      font-size: 15px;
+      font-weight: 600;
+      padding: 8px 18px;
+      border-radius: 100px;
+      transition: background .2s, color .2s;
+    }
+
+    .nav a:hover,
+    .nav a[aria-current="page"] {
+      background: #d7ebfb;
+      color: #246b9f;
+    }
+
+    main {
+      padding-bottom: 48px;
+    }
+
+    /* ==========================================
+       4. 메인 프로필
+       ========================================== */
+    .hero {
+      padding: 40px 0 36px;
+      display: grid;
+      grid-template-columns: minmax(240px,320px) 1fr;
+      align-items: center;
+      gap: clamp(34px,5vw,70px);
+    }
+
+    /* 정사각형 프로필 사진 */
+    .profile-image {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      position: relative;
+      border-radius: 34px;
+      background: #dcecf7;
+      box-shadow: var(--shadow);
+    }
+
+    .profile-image img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .hero-copy {
+      min-width: 0;
+    }
+
+    .hero-title-line {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 15px 23px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(42px,5.3vw,68px);
+      line-height: 1.16;
+      letter-spacing: -.075em;
+      font-weight: 850;
+    }
+
+    .career-tag {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      border-radius: 100px;
+      padding: 7px 17px;
+      color: #2676b3;
+      background: #dfedf9;
+      font-weight: 700;
+      font-size: 15px;
+      white-space: nowrap;
+    }
+
+    .career-tag .icon {
+      width: 18px;
+      height: 18px;
+    }
+
+    .intro {
+      margin: 25px 0 0;
+      font-weight: 650;
+      font-size: clamp(19px,2vw,26px);
+      letter-spacing: -.045em;
+      line-height: 1.6;
+    }
+
+    /* ==========================================
+       5. 자기소개 바로 아래 연락처
+       ========================================== */
+    .hero-contact {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .hero-contact-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      max-width: 100%;
+    }
+
+    .hero-contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      color: #355f80;
+      font-size: 15px;
+      font-weight: 600;
+      overflow-wrap: anywhere;
+      transition: color .2s ease;
+    }
+
+    .hero-contact-link:hover {
+      color: #2188cf;
+    }
+
+    .hero-contact-link .icon {
+      width: 21px;
+      height: 21px;
+      color: #418fc9;
+    }
+
+    .hero-contact-link .external {
+      width: 15px;
+      height: 15px;
+      color: #89a9bf;
+    }
+
+    .hero-copy-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      flex-shrink: 0;
+      padding: 6px;
+      border: 1px solid #d6e7f5;
+      border-radius: 9px;
+      background: #ffffff;
+      color: #418fc9;
+      cursor: pointer;
+      transition: background .2s;
+    }
+
+    .hero-copy-button:hover {
+      background: #e4f2fc;
+    }
+
+    .hero-copy-button .icon {
+      width: 17px;
+      height: 17px;
+    }
+
+    .copy-status {
+      margin: 0;
+      min-height: 0;
+      color: #245f89;
+      font-size: 13px;
+    }
+
+    .copy-status:empty {
+      display: none;
+    }
+
+    /* ==========================================
+       6. 자기소개 / 관심 분야 카드
+       ========================================== */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1.08fr;
+      gap: 22px;
+      margin-top: 2px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3,minmax(0,1fr));
+      gap: 22px;
+      margin-top: 22px;
+    }
+
+    .card {
+      min-width: 0;
+      background: rgba(255,255,255,.85);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 26px 28px;
+    }
+
+    .card-heading {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin: 0 0 18px;
+      font-size: 23px;
+      letter-spacing: -.045em;
+      line-height: 1.35;
+    }
+
+    .icon-circle {
+      flex: none;
+      display: grid;
+      place-items: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #e6f4fd;
+      color: #418fca;
+    }
+
+    .icon-circle .icon {
+      width: 25px;
+      height: 25px;
+    }
+
+    .card p {
+      margin: 0;
+      color: #324b64;
+      font-size: 16px;
+    }
+
+    .about-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .about-card p + p {
+      margin-top: 10px;
+    }
+
+    .interests-list {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 9px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .interest {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 12px;
+      font-size: 14px;
+      font-weight: 650;
+      color: #27618d;
+      background: #e8f4fd;
+      border-radius: 99px;
+      white-space: nowrap;
+    }
+
+    .interest .icon {
+      width: 18px;
+      height: 18px;
+    }
+
+    /* ==========================================
+       7. 강점 / 경험 / 목표
+       ========================================== */
+    .details-card {
+      min-height: 208px;
+    }
+
+    .details-card .card-heading {
+      font-size: 21px;
+    }
+
+    .detail-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 9px;
+    }
+
+    .detail-list li {
+      display: flex;
+      gap: 11px;
+      align-items: flex-start;
+      font-size: 16px;
+      color: #344f67;
+    }
+
+    .detail-list .icon {
+      width: 21px;
+      height: 21px;
+      color: #76b4e2;
+      margin-top: 3px;
+    }
+
+    .detail-list strong {
+      font-weight: 750;
+      color: #223d57;
+    }
+
+    .bullet {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #77b6e4;
+      flex: none;
+      margin-top: 11px;
+    }
+
+    .goal-copy {
+      padding-top: 3px;
+    }
+
+    /* ==========================================
+       8. 하단 영역
+       ========================================== */
+    .footer {
+      position: relative;
+      padding: 12px 0 30px;
+      text-align: center;
+    }
+
+    .back-to-top {
+      display: inline-grid;
+      place-items: center;
+      width: 44px;
+      height: 38px;
+      border-radius: 12px;
+      color: #68aae0;
+      transition: transform .2s, background .2s;
+    }
+
+    .back-to-top:hover {
+      transform: translateY(-3px);
+      background: #e1f1fc;
+    }
+
+    .back-to-top .icon {
+      width: 26px;
+      height: 26px;
+    }
+
+    .copyright {
+      margin: 5px 0 0;
+      font-size: 12px;
+      color: #6b879d;
+    }
+
+    /* ==========================================
+       9. 태블릿
+       ========================================== */
+    @media (max-width: 920px) {
+      .container {
+        width: min(100% - 42px,750px);
+      }
+
+      .hero {
+        grid-template-columns: minmax(190px,.75fr) 1fr;
+        gap: 26px;
+        padding-top: 25px;
+      }
+
+      .grid-2 {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .grid-3 {
+        gap: 14px;
+      }
+
+      .card {
+        padding: 22px;
+      }
+
+      .card-heading {
+        font-size: 20px;
+        gap: 11px;
+      }
+
+      .details-card .card-heading {
+        font-size: 18px;
+      }
+
+      .icon-circle {
+        width: 40px;
+        height: 40px;
+      }
+    }
+
+    /* ==========================================
+       10. 모바일
+       ========================================== */
+    @media (max-width: 680px) {
+      html {
+        scroll-padding-top: 20px;
+      }
+
+      .container {
+        width: calc(100% - 32px);
+      }
+
+      .header-inner {
+        padding: 15px 0 11px;
+        min-height: auto;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .brand {
+        font-size: 20px;
+      }
+
+      .nav {
+        width: 100%;
+        justify-content: space-between;
+        gap: 2px;
+      }
+
+      .nav a {
+        font-size: 13px;
+        padding: 7px 10px;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 22px;
+        padding: 22px 0 28px;
+      }
+
+      .profile-image {
+        width: min(100%,320px);
+        margin-inline: auto;
+        border-radius: 24px;
+      }
+
+      h1 {
+        font-size: 43px;
+      }
+
+      .intro {
+        margin-top: 15px;
+        font-size: 19px;
+      }
+
+      .hero-contact {
+        margin-top: 20px;
+        gap: 12px;
+      }
+
+      .hero-contact-link {
+        font-size: 14px;
+      }
+
+      .grid-2,
+      .grid-3 {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        margin-top: 15px;
+      }
+
+      .card {
+        padding: 22px;
+      }
+
+      .details-card {
+        min-height: auto;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *, *::before, *::after {
+        transition: none !important;
+        animation: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ==========================================
+       SVG 아이콘 정의
+       ========================================== -->
+  <svg xmlns="http://www.w3.org/2000/svg"
+       class="sr-only"
+       aria-hidden="true"
+       focusable="false">
+
+    <symbol id="i-user" viewBox="0 0 24 24">
+      <circle cx="12" cy="7.5" r="4"/>
+      <path d="M4.5 21v-2.2A7.5 7.5 0 0 1 12 11.5a7.5 7.5 0 0 1 7.5 7.3V21"/>
+    </symbol>
+
+    <symbol id="i-heart" viewBox="0 0 24 24">
+      <path d="M20.6 5.8a5.2 5.2 0 0 0-7.3 0L12 7.1l-1.3-1.3a5.2 5.2 0 0 0-7.3 7.3L12 21l8.6-7.9a5.2 5.2 0 0 0 0-7.3Z"/>
+    </symbol>
+
+    <symbol id="i-music" viewBox="0 0 24 24">
+      <path d="M9 18V5l11-2v13"/>
+      <ellipse cx="6" cy="18" rx="3" ry="2"/>
+      <ellipse cx="17" cy="16" rx="3" ry="2"/>
+    </symbol>
+
+    <symbol id="i-book" viewBox="0 0 24 24">
+      <path d="M12 6c-2.4-2-5.5-2.6-9-2v14c3.5-.6 6.6 0 9 2 2.4-2 5.5-2.6 9-2V4c-3.5-.6-6.6 0-9 2ZM12 6v14"/>
+    </symbol>
+
+    <symbol id="i-paw" viewBox="0 0 24 24">
+      <ellipse cx="7" cy="6" rx="1.5" ry="2"/>
+      <ellipse cx="12" cy="4.5" rx="1.5" ry="2"/>
+      <ellipse cx="17" cy="6" rx="1.5" ry="2"/>
+      <ellipse cx="20" cy="10" rx="1.4" ry="1.9"/>
+      <path d="M12 11c-2 0-2.9 2-4.4 3.3C6 15.7 6 19 8.6 20c1.5.6 2.5-.3 3.4-.3s1.9.9 3.4.3c2.6-1 2.6-4.3 1-5.7C14.9 13 14 11 12 11Z"/>
+    </symbol>
+
+    <symbol id="i-spark" viewBox="0 0 24 24">
+      <path d="m12 2 2.1 7.9L22 12l-7.9 2.1L12 22l-2.1-7.9L2 12l7.9-2.1L12 2Z"/>
+    </symbol>
+
+    <symbol id="i-code" viewBox="0 0 24 24">
+      <path d="m8 5-6 7 6 7M16 5l6 7-6 7M14 3l-4 18"/>
+    </symbol>
+
+    <symbol id="i-layers" viewBox="0 0 24 24">
+      <path d="m12 2 9 5-9 5-9-5 9-5ZM3 12l9 5 9-5M3 17l9 5 9-5"/>
+    </symbol>
+
+    <symbol id="i-target" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9"/>
+      <circle cx="12" cy="12" r="5"/>
+      <circle cx="12" cy="12" r="1"/>
+    </symbol>
+
+    <symbol id="i-check" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="10" fill="currentColor" stroke="none"/>
+      <path d="m7 12 3 3 7-7" stroke="#fff"/>
+    </symbol>
+
+    <symbol id="i-mail" viewBox="0 0 24 24">
+      <rect x="2" y="4" width="20" height="16" rx="2"/>
+      <path d="m2 6 10 8 10-8"/>
+    </symbol>
+
+    <symbol id="i-instagram" viewBox="0 0 24 24">
+      <rect x="2" y="2" width="20" height="20" rx="5"/>
+      <circle cx="12" cy="12" r="4.3"/>
+      <circle cx="18" cy="6.4" r=".8" fill="currentColor" stroke="none"/>
+    </symbol>
+
+    <symbol id="i-external" viewBox="0 0 24 24">
+      <path d="M13 4h7v7M20 4 10 14"/>
+      <path d="M20 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h5"/>
+    </symbol>
+
+    <symbol id="i-copy" viewBox="0 0 24 24">
+      <rect x="8" y="8" width="12" height="12" rx="2"/>
+      <path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>
+    </symbol>
+
+    <symbol id="i-up" viewBox="0 0 24 24">
+      <path d="m5 15 7-7 7 7M5 20l7-7 7 7"/>
+    </symbol>
+
+    <symbol id="i-laptop" viewBox="0 0 24 24">
+      <rect x="4" y="4" width="16" height="12" rx="1"/>
+      <path d="M2 19h20"/>
+    </symbol>
+  </svg>
+
+  <div class="site-shell" id="top">
+
+    <!-- ==========================================
+         상단 메뉴
+         ========================================== -->
+    <header class="header">
+      <div class="container header-inner">
+
+        <!-- 수정: 웹페이지 이름 -->
+        <a href="#top" class="brand"
+           aria-label="홍길동 홈페이지, 맨 위로">
+          <span class="brand-mark" aria-hidden="true"></span>
+          홍길동
+        </a>
+
+        <nav class="nav" aria-label="주 메뉴">
+          <a href="#top" aria-current="page">Home</a>
+          <a href="#about">About</a>
+          <a href="#career">Career</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+      </div>
+    </header>
+
+    <main class="container">
+
+      <!-- ==========================================
+           메인 프로필
+           ========================================== -->
+      <section class="hero" aria-labelledby="hero-title">
+
+        <!-- 수정: 프로필 사진 -->
+        <div class="profile-image">
+
+          <!--
+            사진 파일을 index.html과 같은 폴더에 넣으세요.
+            예: profile.jpg
+
+            파일명이 다르면 src 값을 변경하세요.
+          -->
+          <img
+            src="images/바이브 사진.JPG"
+            alt="홍길동 프로필 사진"
+            width="400"
+            height="400"
+          >
+
+        </div>
+
+        <div class="hero-copy">
+
+          <div class="hero-title-line">
+
+            <!-- 수정: 이름 -->
+            <h1 id="hero-title">홍길동</h1>
+
+            <!-- 수정: 희망 분야 -->
+            <span class="career-tag">
+              <svg class="icon" aria-hidden="true">
+                <use href="#i-laptop"/>
+              </svg>
+              IT 분야 지원자
+            </span>
+
+          </div>
+
+          <!-- 수정: 한 줄 소개 -->
+          <p class="intro">
+            안녕하세요. 새로운 도전을 하며 성장하는 지원자 홍길동입니다.
+          </p>
+
+          <!-- ======================================
+               이메일 및 인스타그램
+               ====================================== -->
+          <div class="hero-contact" id="contact">
+
+            <!-- 수정: 이메일 주소 -->
+            <div class="hero-contact-item">
+
+              <a href="mailto:exame@hfgatlk.com"
+                 class="hero-contact-link"
+                 aria-label="exame@hfgatlk.com 주소로 이메일 보내기">
+
+                <svg class="icon" aria-hidden="true">
+                  <use href="#i-mail"/>
+                </svg>
+
+                <span>exame@hfgatlk.com</span>
+              </a>
+
+              <!-- 이메일 복사 버튼 -->
+              <button type="button"
+                      id="copy-email"
+                      class="hero-copy-button"
+                      aria-label="이메일 주소 복사"
+                      title="이메일 주소 복사">
+
+                <svg class="icon" aria-hidden="true">
+                  <use href="#i-copy"/>
+                </svg>
+
+              </button>
+
+            </div>
+
+            <!-- 수정: 인스타그램 계정 -->
+            <div class="hero-contact-item">
+
+              <a href="https://www.instagram.com/ulkinl/"
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 class="hero-contact-link"
+                 aria-label="인스타그램 @ulkinl 프로필 새 탭에서 열기">
+
+                <svg class="icon" aria-hidden="true">
+                  <use href="#i-instagram"/>
+                </svg>
+
+                <span>@ulkinl</span>
+
+                <svg class="icon external" aria-hidden="true">
+                  <use href="#i-external"/>
+                </svg>
+
+              </a>
+
+            </div>
+
+            <p id="copy-status"
+               class="copy-status"
+               role="status"
+               aria-live="polite"></p>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           About Me / Interests
+           ========================================== -->
+      <div class="grid-2" id="about">
+
+        <section class="card about-card"
+                 aria-labelledby="about-title">
+
+          <h2 class="card-heading" id="about-title">
+            <span class="icon-circle">
+              <svg class="icon" aria-hidden="true">
+                <use href="#i-user"/>
+              </svg>
+            </span>
+            About Me
+          </h2>
+
+          <!-- 수정: 자기소개 -->
+          <p>
+            꼼꼼함과 성실함을 바탕으로 꾸준히 배우며
+            전문성을 쌓아가고 있습니다.
+          </p>
+
+          <p>
+            새로운 기술과 경험에 관심을 가지고 있으며
+            지속적인 학습을 통해 성장하고자 합니다.
+          </p>
+
+        </section>
+
+        <section class="card"
+                 aria-labelledby="interests-title">
+
+          <h2 class="card-heading" id="interests-title">
+            <span class="icon-circle">
+              <svg class="icon" aria-hidden="true">
+                <use href="#i-heart"/>
+              </svg>
+            </span>
+            Interests
+          </h2>
+
+          <!-- 수정: 관심 분야 -->
+          <ul class="interests-list">
+
+            <li class="interest"
+                title="장르 구분 없이 다양하게 감상">
+              <svg class="icon" aria-hidden="true">
+                <use href="#i-music"/>
+              </svg>
+              음악
+            </li>
+
+            <li class="interest"
+                title="자기계발서 및 AI 관련 분야">
+              <svg class="icon" aria-hidden="true">
+                <use href="#i-book"/>
+              </svg>
+              독서
+            </li>
+
+            <li class="interest"
+                title="고양이와 강아지를 좋아합니다">
+              <svg class="icon" aria-hidden="true">
+                <use href="#i-paw"/>
+              </svg>
+              고양이 · 강아지
+            </li>
+
+            <li class="interest"
+                title="인공지능과 관련 기술">
+              <svg class="icon" aria-hidden="true">
+                <use href="#i-spark"/>
+              </svg>
+              AI
+            </li>
+
+            <li class="interest"
+                title="프로그래밍 학습과 실습">
+              <svg class="icon" aria-hidden="true">
+                <use href="#i-code"/>
+              </svg>
+              코딩 학습
+            </li>
+
+          </ul>
+
+        </section>
+      </div>
+
+      <!-- ==========================================
+           Career
+           ========================================== -->
+      <div class="grid-3" id="career">
+
+        <!-- 나의 강점 -->
+        <section class="card details-card"
+                 aria-labelledby="strengths-title">
+
+          <h2 class="card-heading" id="strengths-title">
+            <span class="icon-circle">
+              <svg class="icon" aria-hidden="true">
+                <use href="#i-layers"/>
+              </svg>
+            </span>
+            나의 강점
+          </h2>
+
+          <ul class="detail-list">
+            <li>
+              <svg class="icon" aria-hidden="true">
+                <use href="#i-check"/>
+              </svg>
+              <span>
+                <strong>꼼꼼함</strong> —
+                작은 부분도 세심하게 확인합니다.
+              </span>
+            </li>
+
+            <li>
+              <svg class="icon" aria-hidden="true">
+                <use href="#i-check"/>
+              </svg>
+              <span>
+                <strong>성실함</strong> —
+                꾸준히 배우고 실천합니다.
+              </span>
+            </li>
+          </ul>
+        </section>
+
+        <!-- 경험 및 활동 -->
+        <section class="card details-card"
+                 aria-labelledby="experience-title">
+
+          <h2 class="card-heading" id="experience-title">
+            <span class="icon-circle">
+              <svg class="icon" aria-hidden="true">
+                <use href="#i-code"/>
+              </svg>
+            </span>
+            경험 및 활동
+          </h2>
+
+          <ul class="detail-list">
+            <li>
+              <span class="bullet" aria-hidden="true"></span>
+              <span>AI 도구를 활용한 바이브코딩</span>
+            </li>
+
+            <li>
+              <span class="bullet" aria-hidden="true"></span>
+              <span>프로그래밍 관련 코딩 학습</span>
+            </li>
+          </ul>
+
+        </section>
+
+        <!-- 앞으로의 목표 -->
+        <section class="card details-card"
+                 aria-labelledby="goals-title">
+
+          <h2 class="card-heading" id="goals-title">
+            <span class="icon-circle">
+              <svg class="icon" aria-hidden="true">
+                <use href="#i-target"/>
+              </svg>
+            </span>
+            앞으로의 목표
+          </h2>
+
+          <p class="goal-copy">
+            꾸준히 배우며 전문성을 갖춘 사람이 되겠습니다.
+          </p>
+
+        </section>
+      </div>
+    </main>
+
+    <!-- ==========================================
+         Footer
+         ========================================== -->
+    <footer class="footer">
+
+      <a href="#top"
+         class="back-to-top"
+         aria-label="페이지 맨 위로">
+        <svg class="icon" aria-hidden="true">
+          <use href="#i-up"/>
+        </svg>
+      </a>
+
+      <p class="copyright">
+        © <span id="copyright-year">2026</span>
+        Hong Gildong. All rights reserved.
+      </p>
+
+    </footer>
+  </div>
+
+  <!-- ==========================================
+       JavaScript
+       ========================================== -->
+  <script>
+    /* 수정: 이메일 주소를 변경할 때 아래 값도 수정하세요. */
+    const EMAIL = 'exame@hfgatlk.com';
+
+    const copyButton = document.getElementById('copy-email');
+    const copyStatus = document.getElementById('copy-status');
+
+    /* 이메일 복사 기능 */
+    async function copyEmail() {
+      let success = false;
+
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(EMAIL);
+          success = true;
+        }
+      } catch (error) {
+        // 대체 방식 사용
+      }
+
+      /* 로컬 파일에서도 복사가 가능하도록 대체 방식 제공 */
+      if (!success) {
+        const temporaryInput = document.createElement('textarea');
+        temporaryInput.value = EMAIL;
+        temporaryInput.style.position = 'fixed';
+        temporaryInput.style.opacity = '0';
+
+        document.body.appendChild(temporaryInput);
+        temporaryInput.focus();
+        temporaryInput.select();
+
+        try {
+          success = document.execCommand('copy');
+        } catch (error) {
+          success = false;
+        }
+
+        temporaryInput.remove();
+        copyButton.focus();
+      }
+
+      copyStatus.textContent = success
+        ? '이메일 주소가 복사되었습니다.'
+        : '복사에 실패했습니다. 이메일 주소를 직접 복사해 주세요.';
+    }
+
+    copyButton.addEventListener('click', copyEmail);
+
+    /* 상단 메뉴 선택 표시 */
+    const links = document.querySelectorAll('.nav a');
+
+    links.forEach(link => {
+      link.addEventListener('click', () => {
+        links.forEach(item => {
+          item.removeAttribute('aria-current');
+        });
+        link.setAttribute('aria-current', 'page');
+      });
+    });
+
+    /* Footer 연도 자동 변경 */
+    document.getElementById('copyright-year').textContent =
+      new Date().getFullYear();
+  </script>
+
+</body>
+</html>

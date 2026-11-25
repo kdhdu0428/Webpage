@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="미터법과 야드파운드법의 8가지 길이 단위를 실시간으로 변환합니다.">
+  <title>길이 단위 변환기</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/script.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <span class="brand"><span class="ruler" aria-hidden="true"></span> 길이 변환기</span>
+      <button id="theme" class="theme-toggle" type="button" aria-label="다크 모드" aria-pressed="false">
+        <span class="sun" aria-hidden="true">☀</span><span class="moon" aria-hidden="true">☾</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="dashboard">
+    <header class="intro">
+      <h1>길이 단위 변환기</h1>
+      <p>값과 기준 단위를 선택하면 8가지 길이 단위로 바로 변환됩니다.</p>
+      <div class="ruler-scale" aria-hidden="true"></div>
+    </header>
+
+    <section class="panel input-panel" aria-labelledby="input-title">
+      <div class="panel-heading">
+        <h2 id="input-title">변환할 값</h2>
+        <button id="reset" class="reset" type="button"><span aria-hidden="true">↺</span> 초기화</button>
+      </div>
+      <div class="fields">
+        <div class="field">
+          <label for="amount">숫자</label>
+          <input id="amount" type="text" placeholder="예: 1.25" autocomplete="off" spellcheck="false" aria-describedby="input-error">
+        </div>
+        <div class="field">
+          <label for="unit">기준 단위</label>
+          <div class="select-wrap"><select id="unit"></select></div>
+        </div>
+      </div>
+      <p id="input-error" class="error" role="status"></p>
+    </section>
+
+    <div class="results">
+      <section class="panel result-panel" aria-labelledby="metric-title">
+        <div class="result-heading"><h2 id="metric-title">미터법</h2><span>METRIC</span></div>
+        <ul id="metric" class="result-list"></ul>
+      </section>
+      <section class="panel result-panel" aria-labelledby="imperial-title">
+        <div class="result-heading"><h2 id="imperial-title">야드파운드법</h2><span>IMPERIAL</span></div>
+        <ul id="imperial" class="result-list"></ul>
+      </section>
+    </div>
+    <p id="copy-status" class="copy-status" role="status"></p>
+  </main>
+
+  <template id="result-template">
+    <li class="result-row">
+      <span class="unit-symbol"></span>
+      <span class="unit-name"></span>
+      <output class="result-value" for="amount unit" aria-live="off"></output>
+      <button class="copy" type="button" disabled><span class="copy-icon" aria-hidden="true"></span></button>
+    </li>
+  </template>
+</body>
+</html>

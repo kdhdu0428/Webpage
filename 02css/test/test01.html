@@ -1,0 +1,157 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>[속보] 오늘 아침 해가 떴다.</title>
+    <style>
+        :root {
+            --paper: #fcfaf6;
+            --ink: #202321;
+            --muted: #5d605b;
+            --accent: #973b28;
+            --line: #dcd6cb;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: var(--paper);
+            color: var(--ink);
+            font-family: "맑은 고딕", "Apple SD Gothic Neo", sans-serif;
+        }
+
+        article {
+            width: min(100% - clamp(32px, 10vw, 96px), 800px);
+            margin: clamp(28px, 7vw, 80px) auto;
+        }
+
+        header {
+            padding: clamp(24px, 5vw, 40px) 0 22px;
+            border-top: 4px solid var(--ink);
+            border-bottom: 1px solid var(--line);
+        }
+
+        h1 {
+            margin: 0 0 18px;
+            font-family: "나눔스퀘어라운드", "NanumSquareRound", "맑은 고딕", "Apple SD Gothic Neo", sans-serif;
+            font-size: clamp(2rem, 6vw, 3.75rem);
+            font-weight: 600;
+            line-height: 1.2;
+            letter-spacing: -0.025em;
+            word-break: keep-all;
+        }
+
+        .breaking {
+            display: block;
+            margin-bottom: 12px;
+            color: var(--accent);
+            font: bold 0.875rem/1.4 "맑은 고딕", "Apple SD Gothic Neo", sans-serif;
+            letter-spacing: 0.08em;
+        }
+
+        .timestamp,
+        figcaption,
+        footer {
+            color: var(--muted);
+            font-size: 0.875rem;
+            line-height: 1.6;
+        }
+
+        .timestamp {
+            margin: 0;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .lead {
+            margin: 26px 0;
+            padding: 4px 0 4px 16px;
+            border-left: 3px solid var(--accent);
+            font-size: clamp(1rem, 2.5vw, 1.15rem);
+            font-weight: 700;
+            line-height: 1.8;
+        }
+
+        .lead p {
+            margin: 0;
+        }
+
+        figure {
+            margin: 0 0 28px;
+        }
+
+        img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        figcaption {
+            margin-top: 9px;
+        }
+
+        .article-body {
+            max-width: 66ch;
+            font-size: clamp(1rem, 2.25vw, 1.125rem);
+            line-height: 1.95;
+            word-break: keep-all;
+            overflow-wrap: break-word;
+        }
+
+        .article-body p {
+            margin: 0 0 1em;
+        }
+
+        footer {
+            margin-top: 30px;
+            padding-top: 14px;
+            border-top: 1px solid var(--line);
+        }
+
+        footer a {
+            color: var(--accent);
+            text-underline-offset: 0.18em;
+            overflow-wrap: anywhere;
+        }
+
+        a:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 4px;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <article>
+            <header>
+                <h1><span class="breaking">속보</span>오늘 아침 해가 떴다.</h1>
+                <p class="timestamp">기사 전송 <time datetime="2020-03-12T14:25">2020-03-12 14:25</time></p>
+            </header>
+
+            <div class="lead">
+                <p>"해가 떠서 너무 놀라웠다."</p>
+                <p>"어제도 떴는데 오늘도 뜰 줄은 몰랐다."</p>
+                <p>"달이 지고 해가 떴다."</p>
+            </div>
+
+            <figure>
+                <img src="images/quino.jpg" alt="일출">
+                <figcaption>오늘 아침 해가 떠오르고 있다. [사진 출처: 인터넷]</figcaption>
+            </figure>
+
+            <div class="article-body">
+                <p><strong>김인규 기자</strong> = 오늘 아침 해가 떠서 논란이 되고 있다. 어젯밤까지만 해도 있던 달이 지고 해가 떴다.</p>
+                <p>일각에서는 해가 압력을 동원해서 달을 지게 한 게 아닌지 의구심을 갖고 있다고 한다.</p>
+                <p>이에 따라 당국에서는 불법성은 없었는지 철저히 조사할 것이라고 밝혔다.</p>
+            </div>
+
+            <footer>
+                <a href="mailto:master@marondal.com">master@marondal.com</a>
+            </footer>
+        </article>
+    </main>
+</body>
+</html>

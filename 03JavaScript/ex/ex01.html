@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Java Script</title>
+    </head>
+    <body>
+
+        <h2>환영 메시지</h2>
+
+        <div>
+            <input type="text" placeholder="이름을 입력하세요" id="nameInput">
+            <button type="button" id="confirmBtn">확인</button>
+            <!--button type="button">취소</button>-->
+        </div>
+
+        <script>
+            // 자바스크립트 코드 작성
+           // alert("자바스크립트 작동");
+
+           // 변수 : 값을 저장하는 공간
+           // 버튼요소 가져오기 : const confirmBtn = document.querySelector("#confirmBtn");
+           const confirmBtn = document.querySelector("#confirmBtn");
+           // 버튼에 클릭 이벤트 등록
+           confirmBtn.addEventListener("click", () => {
+                // 클릭했을때 실행될 코드= alert("");
+                // alert("확인 버튼 클릭");
+
+                // 입력 태그 요소 가져오기
+                const nameInput = document.querySelector("#nameInput");
+                // 입력 요소로 부터 입력 값 가져오기
+                const name = nameInput.value;
+
+                // 가져온 입력 값이 비워진 상태인지 점검
+                // 만약 name이 비워져 있다면 (""와 같다면)
+                if(name == "") {
+                    alert("이름을 입력하세요");
+                    return;//중단
+                }
+
+                alert(name + "님 반갑습니다.");
+
+           });
+
+
+           
+        </script>
+    </body>
+</html>

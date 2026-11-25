@@ -1,0 +1,1171 @@
+
+/* =========================
+   기본 설정
+========================= */
+
+:root {
+  --red: #ad3026;
+  --dark-red: #90251c;
+  --cream: #fcf3e3;
+  --yellow: #ffce70;
+  --brown: #392820;
+  --white: #ffffff;
+  --border: #dddddd;
+  --gray: #888888;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Apple SD Gothic Neo",
+               "Malgun Gothic",
+               Arial,
+               sans-serif;
+  color: var(--brown);
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+}
+
+button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid #dba33d;
+  outline-offset: 3px;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.page {
+  flex: 1;
+}
+
+
+/* =========================
+   상단 메뉴
+========================= */
+
+.header {
+  width: 100%;
+  min-height: 64px;
+  padding: 10px 24px;
+  background: var(--red);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  padding: 0;
+  background: transparent;
+  color: white;
+  font-size: 23px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-link {
+  padding: 10px 15px;
+  background: transparent;
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+
+.nav-link:hover {
+  background: #ffffff20;
+}
+
+.nav-link.active:not(.order-nav) {
+  box-shadow: inset 0 -2px var(--yellow);
+}
+
+.order-nav {
+  background: var(--yellow);
+  color: var(--brown);
+}
+
+.order-nav:hover {
+  background: #ffdb91;
+}
+
+
+/* =========================
+   주문 화면 레이아웃
+========================= */
+
+#order {
+  display: flex;
+}
+
+.order-layout {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  flex: 1;
+}
+
+
+/* =========================
+   왼쪽 피자 영역
+========================= */
+
+.pizza-preview {
+  min-width: 0;
+  background: var(--cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 35px 24px;
+}
+
+.preview-content {
+  width: 100%;
+  max-width: 580px;
+}
+
+.pizza-preview h1 {
+  font-size: 30px;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.eyebrow {
+  display: block;
+  color: #938675;
+  font-size: 13px;
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+
+.pizza-stage {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 32px auto;
+}
+
+.pizza-board {
+  width: 100%;
+  max-width: 470px;
+  aspect-ratio: 1 / 1;
+  background: #f0e5d0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* =========================
+   직접 삽입하는 피자 사진
+========================= */
+
+.pizza {
+  width: 90%;
+  aspect-ratio: 1 / 1;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.pizza-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  /* 사진 원본 비율 유지 */
+  object-fit: contain;
+}
+
+/* 피자 사이즈 변경 */
+
+.pizza.size-S {
+  transform: scale(0.68);
+}
+
+.pizza.size-M {
+  transform: scale(0.85);
+}
+
+.pizza.size-L {
+  transform: scale(1);
+}
+
+#pizza-size-label {
+  font-size: 21px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.preview-guide {
+  font-size: 14px;
+  color: #938675;
+  line-height: 1.6;
+}
+
+
+/* =========================
+   추가 토핑 사진 표시
+========================= */
+
+.topping-layer {
+  position: absolute;
+  inset: 15%;
+  border-radius: 50%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.topping-piece {
+  position: absolute;
+  width: 18%;
+  height: 18%;
+  object-fit: contain;
+  transform: translate(-50%, -50%);
+  animation: topping-appear 0.25s ease;
+}
+
+@keyframes topping-appear {
+  from {
+    opacity: 0;
+    scale: 0.6;
+  }
+
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+
+/* =========================
+   오른쪽 주문 영역
+========================= */
+
+.order-panel {
+  min-width: 0;
+  padding: 26px 30px;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.order-title {
+  font-size: 24px;
+  margin-bottom: 22px;
+}
+
+#order-form {
+  width: 100%;
+}
+
+fieldset {
+  min-width: 0;
+  border: none;
+  margin: 0 0 20px;
+  padding: 0;
+}
+
+legend,
+.option-title {
+  font-size: 16px;
+  font-weight: 800;
+}
+
+legend {
+  margin-bottom: 12px;
+}
+
+
+/* =========================
+   피자 사이즈 선택
+========================= */
+
+.size-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.size-option {
+  position: relative;
+  min-width: 0;
+  cursor: pointer;
+}
+
+.size-option input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+
+.size-option span {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 76px;
+  padding: 12px 4px;
+  gap: 7px;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  transition: background 0.2s,
+              border-color 0.2s;
+}
+
+.size-option b {
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.size-option small {
+  font-size: 13px;
+  color: var(--gray);
+}
+
+.size-option:hover span {
+  border-color: var(--red);
+}
+
+.size-option input:checked + span {
+  background: #fff0e8;
+  border-color: var(--red);
+  color: var(--red);
+}
+
+.size-option input:focus-visible + span {
+  outline: 3px solid var(--yellow);
+  outline-offset: 3px;
+}
+
+
+/* =========================
+   추가 토핑 선택
+========================= */
+
+.topping-fieldset {
+  border-bottom: 1px solid #eeeeee;
+  padding-bottom: 20px;
+}
+
+.topping-options {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.topping-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.topping-option input {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 19px;
+  height: 19px;
+  margin: 0;
+  border: 1px solid #bcbcbc;
+  border-radius: 50%;
+  background: white;
+  display: grid;
+  place-content: center;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.topping-option input:checked {
+  background: #30251e;
+  border-color: #30251e;
+}
+
+.topping-option input:checked::after {
+  content: "✓";
+  color: white;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.topping-name {
+  flex: 1;
+}
+
+.topping-price {
+  font-size: 13px;
+  color: var(--gray);
+  white-space: nowrap;
+}
+
+
+/* =========================
+   주문 수량
+========================= */
+
+.quantity-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.quantity-control button {
+  width: 32px;
+  height: 32px;
+  background: white;
+  border: 1px solid #e5e5e5;
+  border-radius: 7px;
+  color: var(--brown);
+  font-size: 18px;
+}
+
+.quantity-control button:hover:not(:disabled) {
+  background: #fff0e8;
+}
+
+#quantity {
+  width: 30px;
+  text-align: center;
+  font-weight: 700;
+}
+
+
+/* =========================
+   주문 요청사항
+========================= */
+
+.request-section {
+  margin-bottom: 22px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.request-section label {
+  display: block;
+  margin-bottom: 12px;
+}
+
+textarea {
+  display: block;
+  width: 100%;
+  min-height: 78px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: white;
+  color: var(--brown);
+  font-size: 14px;
+  resize: vertical;
+}
+
+textarea::placeholder {
+  color: #aaaaaa;
+}
+
+.char-count {
+  margin-top: 8px;
+  color: #999999;
+  font-size: 12px;
+  text-align: right;
+}
+
+
+/* =========================
+   총 주문 금액
+========================= */
+
+.price-section {
+  margin-bottom: 14px;
+}
+
+.price-section p {
+  font-size: 14px;
+  color: var(--gray);
+  margin-bottom: 8px;
+}
+
+#total-price {
+  display: block;
+  font-size: 30px;
+  font-weight: 800;
+  color: var(--red);
+}
+
+
+/* =========================
+   주문 및 초기화 버튼
+========================= */
+
+.order-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.primary-btn {
+  padding: 14px 24px;
+  background: var(--red);
+  color: white;
+  border-radius: 8px;
+  font-weight: 700;
+  transition: background 0.2s ease;
+}
+
+.primary-btn:hover:not(:disabled) {
+  background: var(--dark-red);
+}
+
+.reset-btn {
+  padding: 10px 20px;
+  border: 1px solid var(--border);
+  background: white;
+  color: var(--gray);
+  border-radius: 8px;
+}
+
+.reset-btn:hover {
+  background: #f7f7f7;
+}
+
+.order-buttons .primary-btn {
+  width: 100%;
+  min-height: 48px;
+  font-size: 16px;
+}
+
+.order-buttons .reset-btn {
+  width: 100%;
+  min-height: 36px;
+  font-size: 13px;
+}
+
+.error-message {
+  color: var(--red);
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+.error-message:empty {
+  display: none;
+}
+
+
+/* =========================
+   HOME 화면
+========================= */
+
+#home {
+  background: var(--cream);
+}
+
+.home-layout {
+  width: 100%;
+  max-width: 1300px;
+  min-height: 650px;
+  margin: auto;
+  padding: 60px 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 40px;
+}
+
+.home-text h1 {
+  font-size: clamp(32px, 4vw, 60px);
+  line-height: 1.3;
+  margin: 20px 0;
+}
+
+.home-text p {
+  color: #88786a;
+  line-height: 1.8;
+  margin-bottom: 25px;
+}
+
+.home-image img {
+  display: block;
+  width: 100%;
+  max-width: 500px;
+  margin: auto;
+  object-fit: contain;
+}
+
+
+/* =========================
+   MENU 화면
+========================= */
+
+#menu {
+  background: var(--cream);
+}
+
+.menu-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  padding: 50px 30px;
+}
+
+.menu-heading {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.menu-heading h1 {
+  font-size: 35px;
+  margin-bottom: 10px;
+}
+
+.menu-heading p {
+  margin-top: 15px;
+  color: #938675;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.menu-card {
+  min-width: 0;
+  padding: 25px;
+  background: white;
+  border: 1px solid #eadbc8;
+  border-radius: 15px;
+  text-align: center;
+}
+
+.menu-image {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-image img {
+  display: block;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.menu-small {
+  width: 65%;
+}
+
+.menu-medium {
+  width: 82%;
+}
+
+.menu-large {
+  width: 100%;
+}
+
+.menu-card h2 {
+  margin: 15px 0 8px;
+}
+
+.menu-card p {
+  color: var(--gray);
+}
+
+.menu-card strong {
+  display: block;
+  color: var(--red);
+  font-size: 24px;
+  margin: 15px 0;
+}
+
+.menu-card .primary-btn {
+  width: 100%;
+}
+
+
+/* =========================
+   주문 확인 팝업
+========================= */
+
+dialog {
+  width: min(90%, 440px);
+  max-height: 85vh;
+  padding: 0;
+  border: none;
+  border-radius: 16px;
+  color: var(--brown);
+  box-shadow: 0 15px 50px #00000030;
+  overflow-y: auto;
+}
+
+dialog::backdrop {
+  background: #00000080;
+}
+
+.modal-content {
+  padding: 28px;
+}
+
+.modal-icon {
+  text-align: center;
+  font-size: 45px;
+  margin-bottom: 12px;
+}
+
+.modal-content h2 {
+  text-align: center;
+  font-size: 23px;
+  margin-bottom: 20px;
+}
+
+.modal-summary {
+  background: var(--cream);
+  border-radius: 10px;
+  padding: 18px;
+  overflow-wrap: anywhere;
+}
+
+.modal-summary p {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+
+#confirm-request {
+  white-space: pre-wrap;
+}
+
+.modal-summary .modal-total {
+  border-top: 1px solid #dfcfb9;
+  padding-top: 15px;
+  margin-bottom: 0;
+  font-size: 18px;
+  color: var(--red);
+}
+
+.demo-notice {
+  font-size: 12px;
+  color: var(--gray);
+  text-align: center;
+  line-height: 1.6;
+  margin-top: 15px;
+}
+
+.modal-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+
+/* =========================
+   주문 완료 팝업
+========================= */
+
+.complete-content {
+  text-align: center;
+}
+
+.complete-icon {
+  width: 75px;
+  height: 75px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  background: #eaf4e5;
+  color: #47823b;
+  display: grid;
+  place-items: center;
+  font-size: 40px;
+}
+
+.complete-content .primary-btn {
+  width: 100%;
+  margin-top: 25px;
+}
+
+
+/* =========================
+   하단 푸터
+========================= */
+
+footer {
+  width: 100%;
+  padding: 15px 10px;
+  background: var(--brown);
+  color: white;
+  text-align: center;
+  font-size: 12px;
+}
+
+
+/* =========================
+   태블릿 화면
+========================= */
+
+@media (max-width: 1000px) {
+
+  .order-panel {
+    padding: 24px 20px;
+  }
+
+  .pizza-preview {
+    padding: 30px 18px;
+  }
+
+  .pizza-preview h1 {
+    font-size: 26px;
+  }
+
+  .order-title {
+    font-size: 22px;
+  }
+
+  .topping-option {
+    font-size: 14px;
+  }
+
+  .topping-price {
+    font-size: 12px;
+  }
+
+}
+
+
+/* =========================
+   작은 화면에서도 좌우 배치 유지
+========================= */
+
+@media (max-width: 650px) {
+
+  .header {
+    min-height: 48px;
+    padding: 8px 10px;
+  }
+
+  .logo {
+    font-size: 14px;
+  }
+
+  .navigation {
+    gap: 3px;
+  }
+
+  .nav-link {
+    padding: 7px 6px;
+    font-size: 10px;
+  }
+
+  .pizza-preview {
+    padding: 20px 6px;
+  }
+
+  .pizza-preview h1 {
+    font-size: 19px;
+  }
+
+  .eyebrow {
+    font-size: 9px;
+    letter-spacing: 0;
+  }
+
+  .pizza-stage {
+    margin: 24px auto;
+  }
+
+  #pizza-size-label {
+    font-size: 14px;
+  }
+
+  .preview-guide {
+    font-size: 10px;
+  }
+
+  .order-panel {
+    padding: 14px 9px;
+  }
+
+  .order-title {
+    font-size: 16px;
+    margin-bottom: 14px;
+  }
+
+  legend,
+  .option-title {
+    font-size: 13px;
+  }
+
+  legend {
+    margin-bottom: 8px;
+  }
+
+  fieldset {
+    margin-bottom: 14px;
+  }
+
+  .size-options {
+    gap: 4px;
+  }
+
+  .size-option span {
+    min-height: 56px;
+    padding: 7px 2px;
+    gap: 4px;
+  }
+
+  .size-option b {
+    font-size: 13px;
+  }
+
+  .size-option small {
+    font-size: 9px;
+  }
+
+  .topping-options {
+    gap: 10px;
+  }
+
+  .topping-option {
+    font-size: 11px;
+    gap: 5px;
+  }
+
+  .topping-option input {
+    width: 15px;
+    height: 15px;
+  }
+
+  .topping-price {
+    font-size: 10px;
+  }
+
+  .quantity-control {
+    gap: 4px;
+  }
+
+  .quantity-control button {
+    width: 24px;
+    height: 24px;
+    font-size: 14px;
+  }
+
+  #quantity {
+    width: 20px;
+    font-size: 12px;
+  }
+
+  textarea {
+    min-height: 60px;
+    padding: 7px;
+    font-size: 11px;
+  }
+
+  .char-count {
+    font-size: 10px;
+  }
+
+  .price-section p {
+    font-size: 11px;
+  }
+
+  #total-price {
+    font-size: 23px;
+  }
+
+  .order-buttons .primary-btn {
+    min-height: 36px;
+    padding: 10px;
+    font-size: 12px;
+  }
+
+  .order-buttons .reset-btn {
+    min-height: 28px;
+    padding: 6px;
+    font-size: 10px;
+  }
+
+  .home-layout {
+    grid-template-columns: 1fr;
+    text-align: center;
+    min-height: auto;
+    padding: 35px 20px;
+  }
+
+  .home-image img {
+    max-width: 300px;
+  }
+
+  .menu-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .menu-card {
+    width: 100%;
+    max-width: 400px;
+    margin: auto;
+  }
+
+  footer {
+    padding: 10px 5px;
+    font-size: 9px;
+  }
+
+}
+
+
+/* 애니메이션 감소 설정 */
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+}
+
+
+/* 피자 정보 전체 영역 */
+.pizza-info {
+  width: 100%;
+  max-width: 600px;
+  margin: 24px auto 16px;
+  padding: 0 8px;
+  text-align: left;
+  box-sizing: border-box;
+}
+
+/* 시그니처 표시와 별점 가로 배치 */
+.pizza-info-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+/* SIGNATURE PIZZA */
+.pizza-signature {
+  color: #b57935;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+/* 별점 영역 */
+.pizza-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+/* 별 아이콘 */
+.rating-star {
+  color: #f5b51b;
+  font-size: 22px;
+  line-height: 1;
+}
+
+/* 별점 숫자 */
+.rating-score {
+  color: #333333;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+/* 피자 이름 */
+.pizza-name {
+  margin: 0;
+  color: #29231e;
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1.4;
+  letter-spacing: -1px;
+}
+
+/* 모바일 반응형 */
+@media (max-width: 768px) {
+  .pizza-info {
+    margin: 18px auto 12px;
+    padding: 0 4px;
+  }
+
+  .pizza-signature {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+  }
+
+  .rating-star {
+    font-size: 19px;
+  }
+
+  .rating-score {
+    font-size: 15px;
+  }
+
+  .pizza-name {
+    font-size: 23px;
+  }
+}

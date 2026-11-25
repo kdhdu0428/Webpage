@@ -1,0 +1,237 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>공원 산책 SNS</title>
+
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="js/script.js" defer></script>
+</head>
+<body>
+  <div class="page-wrap">
+    <main class="post-card">
+
+      <!-- 프로필 -->
+      <header class="post-header">
+        <div class="profile-box">
+          <div class="profile-image-wrap">
+            <img
+              src="images/vie.JPG"
+              alt="프로필 이미지"
+              class="profile-image"
+            />
+          </div>
+
+          <div class="profile-text">
+            <p class="profile-name">오늘도 산책</p>
+            <p class="post-date">2026.11.23</p>
+          </div>
+        </div>
+
+        <button
+          class="more-button"
+          type="button"
+          aria-label="더보기"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </header>
+
+      <!-- 사진 슬라이드 -->
+      <section class="photo-section">
+        <div class="photo-frame">
+
+          <button
+            class="slide-button prev"
+            id="prevButton"
+            type="button"
+            aria-label="이전 사진"
+          >
+            &#10094;
+          </button>
+
+          <div class="photo-track-wrap">
+            <div class="photo-track" id="photoTrack">
+
+              <div class="photo-slide">
+                <img
+                  src="images/a1.jpg"
+                  alt="첫 번째 공원 산책 사진"
+                />
+              </div>
+
+              <div class="photo-slide">
+                <img
+                  src="images/a2.jpg"
+                  alt="두 번째 공원 산책 사진"
+                />
+              </div>
+
+              <div class="photo-slide">
+                <img
+                  src="images/a3.jpg"
+                  alt="세 번째 공원 산책 사진"
+                />
+              </div>
+
+            </div>
+          </div>
+
+          <button
+            class="slide-button next"
+            id="nextButton"
+            type="button"
+            aria-label="다음 사진"
+          >
+            &#10095;
+          </button>
+        </div>
+
+        <!-- 사진 위치 표시 -->
+        <div class="indicator-box" id="indicatorBox">
+          <button
+            class="indicator active"
+            type="button"
+            aria-label="1번 사진 보기"
+          ></button>
+
+          <button
+            class="indicator"
+            type="button"
+            aria-label="2번 사진 보기"
+          ></button>
+
+          <button
+            class="indicator"
+            type="button"
+            aria-label="3번 사진 보기"
+          ></button>
+        </div>
+      </section>
+
+      <!-- 좋아요 -->
+      <section class="action-section">
+        <div class="action-left">
+
+          <button
+            class="like-button"
+            id="likeButton"
+            type="button"
+            aria-label="좋아요"
+            aria-pressed="false"
+          >
+            <span class="like-icon" id="likeIcon">♡</span>
+            <span class="like-text">좋아요</span>
+          </button>
+
+          <div class="comment-label">
+            <span class="comment-icon">💬</span>
+            <span>댓글</span>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 산책 일상 글 -->
+      <section class="content-section">
+        <p class="post-text">
+          오늘은 날씨가 좋아서 가까운 공원을 산책했어요.<br />
+          푸른 나무들과 시원한 바람, 햇살이 어우러져 걷는 내내 기분이 정말 좋았어요.<br />
+          바쁜 일상 속에서도 이렇게 잠깐의 산책이 큰 힐링이 되네요. 🌿
+        </p>
+
+        <div class="tag-list">
+          <span class="tag">#공원산책</span>
+          <span class="tag">#일상기록</span>
+          <span class="tag">#힐링</span>
+          <span class="tag">#자연</span>
+        </div>
+      </section>
+
+      <!-- 댓글 입력 -->
+      <section class="comment-section">
+        <div class="comment-title">
+          <span class="comment-title-icon">💬</span>
+          <span>댓글 남기기</span>
+        </div>
+
+        <div class="comment-form">
+
+          <textarea
+            id="commentInput"
+            class="comment-input"
+            placeholder="산책 이야기를 댓글로 남겨주세요."
+            maxlength="200"
+            aria-label="댓글 입력"
+          ></textarea>
+
+          <div class="comment-bottom">
+            <p class="comment-count">
+              <span id="currentCount">0</span> / 200자
+            </p>
+
+            <button
+              class="comment-submit"
+              id="commentSubmit"
+              type="button"
+              disabled
+            >
+              댓글 등록
+            </button>
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- 댓글 안내 팝업 -->
+  <div
+    class="modal-overlay"
+    id="modalOverlay"
+    aria-hidden="true"
+  >
+    <div
+      class="modal-box"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modalTitle"
+      tabindex="-1"
+    >
+      <button
+        class="modal-close"
+        id="modalClose"
+        type="button"
+        aria-label="팝업 닫기"
+      >
+        ×
+      </button>
+
+      <div class="modal-icon">i</div>
+
+      <h2 class="modal-title" id="modalTitle">
+        댓글 등록 안내
+      </h2>
+
+      <p class="modal-text">
+        이 페이지는 산책 기록을 공유하는 공간입니다.<br />
+        작성하신 댓글은 실제로 저장되지 않습니다.
+      </p>
+
+      <button
+        class="modal-confirm"
+        id="modalConfirm"
+        type="button"
+      >
+        확인
+      </button>
+    </div>
+  </div>
+
+</body>
+</html>

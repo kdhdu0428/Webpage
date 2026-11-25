@@ -1,0 +1,161 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>[일상] 서울숲 나들이 후기! 블로그 포스팅</title>
+    <style>
+        :root {
+            color-scheme: light;
+            --background: #eef4ec;
+            --paper: #fffef9;
+            --forest: #214b36;
+            --text: #304338;
+            --muted: #52675a;
+            --line: #dbe6d9;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: clamp(16px, 5vw, 56px);
+            background: var(--background);
+            color: var(--text);
+            font-family: "맑은 고딕", "Apple SD Gothic Neo", sans-serif;
+            line-height: 1.8;
+            overflow-wrap: break-word;
+        }
+
+        article {
+            max-width: 740px;
+            margin: 0 auto;
+            overflow: hidden;
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 20px;
+        }
+
+        header {
+            padding: clamp(24px, 6vw, 48px);
+            background: var(--forest);
+            color: var(--paper);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: clamp(1.65rem, 5vw, 2.6rem);
+            line-height: 1.28;
+            letter-spacing: -0.04em;
+            word-break: keep-all;
+        }
+
+        .category {
+            margin: 10px 0 0;
+            color: #e1efdf;
+            font-size: 0.875rem;
+        }
+
+        .post {
+            padding: clamp(20px, 6vw, 48px);
+        }
+
+        .post > p {
+            margin: 0 0 24px;
+        }
+
+        figure {
+            margin: 0 0 24px;
+        }
+
+        img {
+            display: block;
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            background: var(--background);
+        }
+
+        figcaption {
+            margin-top: 8px;
+            color: var(--muted);
+            font-size: 0.875rem;
+        }
+
+        footer {
+            border-top: 1px solid var(--line);
+            padding-top: 22px;
+        }
+
+        footer p {
+            margin: 0 0 10px;
+        }
+
+        .park-link {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 8px;
+            background: var(--forest);
+            color: var(--paper);
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .park-link:hover {
+            background: #173a29;
+            text-decoration: underline;
+        }
+
+        a:focus-visible {
+            outline: 2px solid var(--forest);
+            outline-offset: 4px;
+        }
+
+        .credit {
+            margin: 14px 0 0;
+            color: var(--muted);
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <article>
+            <header>
+                <h1>[일상] 서울숲 나들이 후기!</h1>
+                <p class="category">카테고리 : 일상이야기</p>
+            </header>
+
+            <div class="post">
+                <p>오늘은 서울 숲에 다녀왔습니다!<br>
+                날씨도 좋고 산책하기 딱 좋은 날이었어요 ^^</p>
+
+                <figure>
+                    <img src="https://mediahub.seoul.go.kr/uploads/mediahub/2024/04/PjSIVqMEOCwmYrREpqQshhDkbXPMAeyG.jpg" alt="서울숲 거울연못">
+                    <figcaption>서울숲 거울연못</figcaption>
+                </figure>
+
+                <p>서울숲에는 멋진 산책로가 많았습니다.<br>
+                특히 <strong>거울연못</strong>에 비친 풍경이 정말 예뻤어요!<br>
+                도심 속에서 자연을 느낄 수 있어 좋았습니다.</p>
+
+                <figure>
+                    <img src="https://mediahub.seoul.go.kr/uploads/mediahub/2024/04/HVtAsCkWHpVcucQNRbTbpYarQrHZsdCJ.jpg" alt="서울숲 튤립 정원" loading="lazy">
+                    <figcaption>서울숲 튤립 정원</figcaption>
+                </figure>
+
+                <p>알록달록한 튤립도 구경했습니다.<br>
+                다음에도 꼭 다시 방문하고 싶네요 ^^</p>
+
+                <footer>
+                    <p>서울숲에 대해 더 알아보고 싶다면?</p>
+                    <a class="park-link" href="https://parks.seoul.go.kr/park/detailView.do?pIdx=5" target="_blank" rel="noopener">서울숲 공식 안내페이지</a>
+                    <p class="credit">사진 출처 : 서울시 내 손안에 서울 (박우영)</p>
+                </footer>
+            </div>
+        </article>
+    </main>
+</body>
+</html>
