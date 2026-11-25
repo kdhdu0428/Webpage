@@ -49,10 +49,8 @@ button, select { cursor: pointer; }
 button:disabled { cursor: default; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
-.topbar { background: var(--surface); border-bottom: 1px solid var(--line); }
 .topbar-inner, .dashboard { width: min(100% - 3rem, 61rem); margin-inline: auto; }
 .topbar-inner { min-height: 4.25rem; display: flex; align-items: center; justify-content: space-between; gap: .75rem; }
-.brand { display: flex; align-items: center; gap: .75rem; font-weight: 750; }
 .site-nav { display: flex; flex-wrap: wrap; gap: .25rem; }
 .site-nav a {
   padding: .45rem .75rem;
@@ -104,6 +102,7 @@ button:disabled { cursor: default; }
 
 .theme-toggle {
   display: flex;
+  flex-shrink: 0;
   align-items: center;
   gap: .2rem;
   padding: .2rem;
@@ -205,7 +204,7 @@ h2 { margin: 0; font-size: 1.25rem; letter-spacing: -.035em; }
 
 @media (max-width: 32rem) {
   .topbar-inner, .dashboard { width: calc(100% - 2rem); }
-  .topbar-inner { flex-wrap: wrap; padding-block: .65rem; gap: .45rem .75rem; }
-  .site-nav { order: 1; flex-basis: 100%; }
+  .topbar-inner { padding-block: .65rem; gap: .5rem; }
+  .site-nav a { padding-inline: .5rem; }
   .fields { grid-template-columns: minmax(0, 1fr); gap: .75rem; }
 }
