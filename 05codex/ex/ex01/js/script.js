@@ -15,10 +15,8 @@ const amount = document.querySelector("#amount");
 const unitSelect = document.querySelector("#unit");
 const inputError = document.querySelector("#input-error");
 const copyStatus = document.querySelector("#copy-status");
-const themeToggle = document.querySelector("#theme");
 const template = document.querySelector("#result-template");
 const defaultUnit = "m";
-const themeKey = "ex01-length-converter-theme";
 const numericPattern = /^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?$/i;
 const decimalFormat = new Intl.NumberFormat("en-US", { maximumFractionDigits: 8 });
 
@@ -152,29 +150,6 @@ async function copyResult(result) {
   }
 }
 
-function getSavedTheme() {
-  try {
-    return localStorage.getItem(themeKey);
-  } catch {
-    return null;
-  }
-}
-
-function applyTheme(theme) {
-  document.documentElement.dataset.theme = theme;
-  themeToggle.setAttribute("aria-pressed", String(theme === "dark"));
-}
-
-themeToggle.addEventListener("click", () => {
-  const theme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
-  applyTheme(theme);
-  try {
-    localStorage.setItem(themeKey, theme);
-  } catch {
-    // 저장소를 사용할 수 없는 환경에서도 현재 화면의 테마는 유지합니다.
-  }
-});
-
 document.querySelector("#reset").addEventListener("click", () => {
   amount.value = "";
   unitSelect.value = defaultUnit;
@@ -185,6 +160,5 @@ document.querySelector("#reset").addEventListener("click", () => {
 amount.addEventListener("input", renderResults);
 unitSelect.addEventListener("change", renderResults);
 
-applyTheme(getSavedTheme() === "dark" ? "dark" : "light");
 unitSelect.value = defaultUnit;
 renderResults();
