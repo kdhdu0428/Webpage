@@ -4,8 +4,8 @@ const modes = document.querySelectorAll("[data-mode]");
 const grid = byId("number-grid");
 const gameCount = byId("game-count");
 const manualGame = byId("manual-game");
-const settingsButton = byId("settings-button");
 const themeButton = byId("theme-button");
+const themeKey = "lotto-645-theme";
 const drawButton = byId("draw-button");
 const redrawButton = byId("redraw-button");
 const resetButton = byId("reset-button");
@@ -111,7 +111,7 @@ function renderControls() {
         button.setAttribute("aria-pressed", String(button.dataset.mode === mode));
         button.disabled = busy;
     }
-    gameCount.disabled = manualGame.disabled = settingsButton.disabled = themeButton.disabled = busy;
+    gameCount.disabled = manualGame.disabled = themeButton.disabled = busy;
     clearSelection.disabled = busy || selected.size === 0;
     drawButton.textContent = manual ? "번호 확정" : "번호 추첨";
     drawButton.disabled = busy || !canDraw();
@@ -252,8 +252,6 @@ async function runDraw() {
     notice.textContent = "";
     tray.replaceChildren();
     renderControls();
-    byId("settings").hidden = true;
-    settingsButton.setAttribute("aria-expanded", "false");
 
     try {
         const locked = mode === "semi" ? new Set(fixed) : new Set();
@@ -335,18 +333,26 @@ resetButton.addEventListener("click", () => {
     document.querySelector('[data-mode="' + mode + '"]').focus();
 });
 
-settingsButton.addEventListener("click", () => {
-    if (busy) return;
-    const panel = byId("settings");
-    panel.hidden = !panel.hidden;
-    settingsButton.setAttribute("aria-expanded", String(!panel.hidden));
-});
+function applyTheme(theme) {
+    document.documentElement.dataset.theme = theme;
+    themeButton.setAttribute("aria-pressed", String(theme === "dark"));
+}
+
+try {
+    applyTheme(localStorage.getItem(themeKey) === "dark" ? "dark" : "light");
+} catch {
+    applyTheme("light");
+}
+
 themeButton.addEventListener("click", () => {
     if (busy) return;
-    const root = document.documentElement;
-    const dark = root.dataset.theme !== "dark";
-    root.dataset.theme = dark ? "dark" : "light";
-    themeButton.setAttribute("aria-pressed", String(dark));
+    const theme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+    applyTheme(theme);
+    try {
+        localStorage.setItem(themeKey, theme);
+    } catch {
+        // Keep the selected theme for the current page when storage is unavailable.
+    }
 });
 
 updateManualGames();
