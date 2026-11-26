@@ -27,8 +27,9 @@ function sorted(numbers) {
     return [...numbers].sort((a, b) => a - b);
 }
 
-function validNumbers(numbers) {
-    return Array.isArray(numbers) && numbers.length === 6 && new Set(numbers).size === 6
+function validNumbers(numbers, minimum = 6, maximum = 6) {
+    return Array.isArray(numbers) && numbers.length >= minimum && numbers.length <= maximum
+        && new Set(numbers).size === numbers.length
         && numbers.every((number) => Number.isInteger(number) && number >= 1 && number <= 45);
 }
 
@@ -60,6 +61,7 @@ function persist() {
 
 function uniformIndex(length) {
     const word = new Uint32Array(1);
+    // Reject the incomplete final bucket before taking the remainder.
     const limit = 2 ** 32 - (2 ** 32 % length);
     do {
         crypto.getRandomValues(word);
@@ -68,6 +70,7 @@ function uniformIndex(length) {
 }
 
 function drawNumbers(locked) {
+    // Each game draws from its own pool, so different games may repeat.
     const pool = allNumbers.filter((number) => !locked.has(number));
     const drawn = [];
     for (let index = 0; index < 6 - locked.size; index += 1) {
@@ -88,8 +91,12 @@ function count() {
 }
 
 function canDraw() {
-    if (mode === "manual") return manualSelections.slice(0, count()).every((numbers) => numbers.size === 6);
-    return mode === "auto" || (fixed.size >= 1 && fixed.size <= 5);
+    const games = Number(gameCount.value);
+    if (!Number.isInteger(games) || games < 1 || games > 5) return false;
+    if (mode === "manual") {
+        return manualSelections.slice(0, games).every((numbers) => validNumbers([...numbers]));
+    }
+    return mode === "auto" || (mode === "semi" && validNumbers([...fixed], 1, 5));
 }
 
 function renderControls() {
@@ -257,10 +264,14 @@ async function runDraw() {
         const manual = mode === "manual";
         const batches = manual ? manualSelections.slice(0, count()).map(sorted)
             : Array.from({ length: count() }, () => drawNumbers(locked));
+        const combinations = batches.map((numbers) => sorted([...locked, ...numbers]));
+        if (!combinations.every((numbers) => validNumbers(numbers))) {
+            throw new Error("Invalid lotto combination");
+        }
         if (!manual && !reducedMotion.matches) await animateDraw(batches);
 
         const time = Date.now();
-        results = batches.map((numbers) => ({ numbers: sorted([...locked, ...numbers]), time }));
+        results = combinations.map((numbers) => ({ numbers, time }));
         archive.history.unshift(...results);
         persist();
         renderEntries();
