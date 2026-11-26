@@ -5,7 +5,6 @@ const grid = byId("number-grid");
 const gameCount = byId("game-count");
 const manualGame = byId("manual-game");
 const themeButton = byId("theme-button");
-const themeKey = "lotto-645-theme";
 const drawButton = byId("draw-button");
 const redrawButton = byId("redraw-button");
 const resetButton = byId("reset-button");
@@ -331,28 +330,6 @@ resetButton.addEventListener("click", () => {
     renderEntries();
     renderControls();
     document.querySelector('[data-mode="' + mode + '"]').focus();
-});
-
-function applyTheme(theme) {
-    document.documentElement.dataset.theme = theme;
-    themeButton.setAttribute("aria-pressed", String(theme === "dark"));
-}
-
-try {
-    applyTheme(localStorage.getItem(themeKey) === "dark" ? "dark" : "light");
-} catch {
-    applyTheme("light");
-}
-
-themeButton.addEventListener("click", () => {
-    if (busy) return;
-    const theme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
-    applyTheme(theme);
-    try {
-        localStorage.setItem(themeKey, theme);
-    } catch {
-        // Keep the selected theme for the current page when storage is unavailable.
-    }
 });
 
 updateManualGames();

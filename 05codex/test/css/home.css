@@ -165,6 +165,34 @@
 .start-link:hover { filter: brightness(0.92); }
 .start-link:focus-visible, .hub-brand:focus-visible { outline: 2px solid #2947a1; outline-offset: 3px; }
 
+:root[data-theme="dark"] {
+    --accent: #afc6ff;
+}
+
+:root[data-theme="dark"] body {
+    background: var(--dark-page);
+    color: var(--dark-text);
+}
+
+:root[data-theme="dark"] .hub-bar {
+    background: var(--dark-surface);
+    border-color: var(--dark-border);
+}
+
+:root[data-theme="dark"] .hub-brand { color: var(--dark-text); }
+:root[data-theme="dark"] .hub-brand svg,
+:root[data-theme="dark"] .hero-controller { color: #729bf0; }
+:root[data-theme="dark"] .hub-header p,
+:root[data-theme="dark"] .game-card p { color: var(--dark-muted); }
+:root[data-theme="dark"] .game-hub::before,
+:root[data-theme="dark"] .game-hub::after { background: #192943; }
+:root[data-theme="dark"] .game-card { box-shadow: var(--dark-shadow); }
+:root[data-theme="dark"] .rps-card { --tint: #202f4b; --line: #3d5279; }
+:root[data-theme="dark"] .lotto-card { --tint: #2d2343; --line: #51436c; }
+:root[data-theme="dark"] .game-art { border-radius: 0.75rem; }
+:root[data-theme="dark"] .start-link:focus-visible,
+:root[data-theme="dark"] .hub-brand:focus-visible { outline-color: var(--accent); }
+
 @media (max-width: 38rem) {
     .game-grid { grid-template-columns: 1fr; max-width: 27rem; }
 }

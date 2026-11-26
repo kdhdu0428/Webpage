@@ -12,10 +12,10 @@
 }
 
 :root[data-theme="dark"] .site-nav {
-    --nav-text: #dde4f3;
+    --nav-text: var(--dark-text);
     --nav-active: #e0d5ff;
     --nav-hover: #30344e;
-    --nav-border: #454962;
+    --nav-border: var(--dark-border);
 }
 
 .site-nav a {

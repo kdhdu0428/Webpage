@@ -13,16 +13,16 @@
 }
 :root[data-theme="dark"] {
     color-scheme: dark;
-    --page: #181320;
+    --page: var(--dark-page);
     --surface: #211a2c;
     --soft: #2c223b;
-    --text: #f4eefc;
-    --muted: #c6b9d4;
+    --text: var(--dark-text);
+    --muted: var(--dark-muted);
     --line: #493b5b;
     --accent: #cfbaff;
     --primary: #c4a9fb;
     --on-primary: #28143f;
-    --shadow: 0 8px 28px #08040f40;
+    --shadow: var(--dark-shadow);
 }
 * { box-sizing: border-box; }
 [hidden] { display: none !important; }
@@ -78,30 +78,6 @@ button, select {
 button:enabled:hover, summary:hover { color: var(--accent); border-color: var(--accent); }
 button:focus-visible, select:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 button:disabled, select:disabled { opacity: 0.58; cursor: default; }
-.theme-toggle {
-    display: inline-flex;
-    flex-shrink: 0;
-    align-items: center;
-    gap: 0.25rem;
-    padding: 0.2rem;
-    border-radius: 999px;
-    background: var(--soft);
-    color: var(--muted);
-}
-.theme-toggle span {
-    display: grid;
-    width: 2.25rem;
-    height: 2.25rem;
-    place-items: center;
-    border-radius: 50%;
-    font-size: 1.25rem;
-    line-height: 1;
-}
-.theme-toggle[aria-pressed="false"] .theme-sun,
-.theme-toggle[aria-pressed="true"] .theme-moon {
-    background: var(--primary);
-    color: var(--on-primary);
-}
 .modes {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));

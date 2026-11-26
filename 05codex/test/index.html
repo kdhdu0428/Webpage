@@ -4,8 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>미니 게임존</title>
+    <script src="js/theme.js"></script>
     <link rel="stylesheet" href="css/navigation.css">
     <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/theme.css">
 </head>
 <body>
     <svg class="home-symbols" aria-hidden="true">
@@ -28,6 +30,10 @@
                 <a href="index.html" aria-current="page">홈</a>
                 <a href="rps.html">가위바위보</a>
                 <a href="lotto.html">로또 추첨기</a>
+                <button id="theme-toggle" class="theme-toggle" type="button" aria-label="다크 모드" aria-pressed="false" data-theme-toggle>
+                    <span class="theme-sun" aria-hidden="true">☀</span>
+                    <span class="theme-moon" aria-hidden="true">☾</span>
+                </button>
             </nav>
         </div>
     </header>

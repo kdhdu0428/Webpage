@@ -1,0 +1,57 @@
+:root[data-theme="dark"] {
+    color-scheme: dark;
+    --dark-page: #111827;
+    --dark-surface: #1b2538;
+    --dark-text: #eff3fc;
+    --dark-muted: #c1cbe0;
+    --dark-border: #3c4a65;
+    --dark-shadow: 0 12px 30px #05091466;
+}
+
+.theme-toggle {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    gap: 0.25rem;
+    box-sizing: border-box;
+    min-height: 44px;
+    padding: 0.2rem;
+    border: 1px solid var(--line, var(--border, #dce5f5));
+    border-radius: 999px;
+    background: var(--soft, var(--tint, #edf3ff));
+    color: var(--muted, #4f6080);
+    cursor: pointer;
+}
+
+.theme-toggle span {
+    display: grid;
+    width: 2.25rem;
+    height: 2.25rem;
+    place-items: center;
+    border-radius: 50%;
+    font-size: 1.25rem;
+    line-height: 1;
+}
+
+:root:not([data-theme="dark"]) .theme-sun,
+:root[data-theme="dark"] .theme-moon {
+    background: var(--primary, var(--accent, #2947a1));
+    color: var(--on-primary, #fff);
+}
+
+:root[data-theme="dark"] .theme-toggle {
+    border-color: var(--dark-border);
+    background: var(--dark-surface);
+    color: var(--dark-muted);
+}
+
+:root[data-theme="dark"] .theme-moon {
+    color: var(--on-primary, #111827);
+}
+
+.theme-toggle:focus-visible {
+    outline: 2px solid var(--accent, #2947a1);
+    outline-offset: 2px;
+}
+
+.theme-toggle:disabled { cursor: default; }

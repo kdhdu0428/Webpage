@@ -6,7 +6,6 @@
 
 const choiceNames = Object.keys(choices);
 const choiceButtons = document.querySelectorAll("[data-choice]");
-const themeToggle = document.querySelector("#theme-toggle");
 const resetButton = document.querySelector("#reset-records");
 const result = document.querySelector("#result");
 const playerHand = document.querySelector("#player-hand");
@@ -118,11 +117,4 @@ resetButton.addEventListener("click", () => {
     computerChoice.textContent = "선택 전";
     result.removeAttribute("data-outcome");
     result.textContent = "전적을 초기화했어요.";
-});
-
-themeToggle.addEventListener("click", () => {
-    const root = document.documentElement;
-    const isDark = root.dataset.theme !== "dark";
-    root.dataset.theme = isDark ? "dark" : "light";
-    themeToggle.setAttribute("aria-pressed", String(isDark));
 });

@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>가위바위보</title>
+    <script src="js/theme.js"></script>
     <link rel="stylesheet" href="css/rps.css">
     <link rel="stylesheet" href="css/navigation.css">
+    <link rel="stylesheet" href="css/theme.css">
     <script src="js/rps.js" defer></script>
 </head>
 <body>
@@ -28,7 +30,10 @@
     <main class="game">
         <header class="game-header">
             <h1>가위바위보</h1>
-            <button class="secondary-button" id="theme-toggle" type="button" aria-pressed="false">다크 모드</button>
+            <button id="theme-toggle" class="theme-toggle" type="button" aria-label="다크 모드" aria-pressed="false" data-theme-toggle>
+                <span class="theme-sun" aria-hidden="true">☀</span>
+                <span class="theme-moon" aria-hidden="true">☾</span>
+            </button>
             <p>가위, 바위, 보 중 하나를 골라 컴퓨터와 대결하세요.</p>
         </header>
 
