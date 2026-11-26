@@ -1,0 +1,98 @@
+body {
+    margin: 0;
+    background: #fff;
+    color: #182541;
+    font: 1rem/1.6 system-ui, sans-serif;
+}
+
+.game-hub {
+    max-width: 54rem;
+    margin-inline: auto;
+    padding: clamp(2.25rem, 8vw, 5rem) clamp(1rem, 4vw, 2rem);
+}
+
+.hub-header {
+    margin-bottom: clamp(1.5rem, 5vw, 2.75rem);
+    text-align: center;
+}
+
+.hub-header h1 { margin: 0; font-size: clamp(2rem, 6vw, 3rem); }
+.hub-header p { margin: 0.4rem 0 0; color: #4b576f; }
+
+.game-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(0.9rem, 3vw, 1.5rem);
+}
+
+.game-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: clamp(1rem, 4vw, 1.75rem);
+    border: 1px solid #e4e8f0;
+    border-radius: 1.25rem;
+    box-shadow: 0 10px 25px #29385c0d;
+    transition: box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.rps-card { --accent: #2947a1; --tint: #edf3ff; --line: #d5e1fb; }
+.lotto-card { --accent: #6342bb; --tint: #f6f1ff; --line: #e5daf9; }
+
+.game-card:hover,
+.game-card:focus-within {
+    border-color: var(--line);
+    box-shadow: 0 13px 30px #29385c1a;
+}
+
+.game-art {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: stretch;
+    gap: clamp(0.5rem, 3vw, 1rem);
+    min-height: 7rem;
+    border-radius: 0.85rem;
+    background: var(--tint);
+}
+
+.game-art span {
+    display: grid;
+    width: clamp(2.55rem, 7vw, 3.4rem);
+    aspect-ratio: 1;
+    place-items: center;
+    border-radius: 50%;
+    font-weight: 750;
+}
+
+.hand-art span { background: #fff; color: var(--accent); font-size: 1.35rem; }
+.lotto-art span { background: #f9dc79; color: #21192d; }
+.lotto-art span:nth-child(2) { background: #ffaeb5; }
+.lotto-art span:nth-child(3) { background: #a4deb5; }
+.game-card h2 { margin: 0.95rem 0 0; font-size: 1.25rem; }
+.game-card p { margin: 0.3rem 0 1rem; color: #4b576f; }
+
+.start-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    margin-top: auto;
+    padding-inline: 0.9rem;
+    border-radius: 0.65rem;
+    background: var(--accent);
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background-color 150ms ease, color 150ms ease;
+}
+
+.start-link:hover { background: var(--tint); color: var(--accent); }
+.start-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+@media (max-width: 36rem) {
+    .game-grid { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .game-card, .start-link { transition: none; }
+}
