@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>가위바위보</title>
+    <link rel="stylesheet" href="css/rps.css">
+    <script src="js/rps.js" defer></script>
+</head>
+<body>
+    <svg class="icon-library" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+        <symbol id="hand-scissors" viewBox="0 0 32 32">
+            <path d="M10 28 6 20c-.8-1.5.7-3 2.2-2.2l3.1 2-3.7-13a2 2 0 0 1 3.8-1.2l3.7 9.6 3.4-11a2 2 0 0 1 3.8 1.1l-2.6 11.3 2-1.8a2 2 0 0 1 3.3 1.5v3.3c0 3.7-1.3 6.1-3.3 8.4z"/>
+        </symbol>
+        <symbol id="hand-rock" viewBox="0 0 32 32">
+            <path d="M10 28c-2-2.4-4-5.9-4-10v-5a2.5 2.5 0 0 1 5 0V9a2.5 2.5 0 0 1 5 0V7a2.5 2.5 0 0 1 5 0v3a2.5 2.5 0 0 1 5 0v9c0 4.5-2 7-4 9zM11 13v3m5-7v6m5-5v5m-10 5 3-3h5a2 2 0 0 1 0 4h-2"/>
+        </symbol>
+        <symbol id="hand-paper" viewBox="0 0 32 32">
+            <path d="M10 28c-1-3.4-2.7-5.4-5.4-8.9a2 2 0 0 1 3-2.7l3.4 3V8a2 2 0 0 1 4 0v7V5a2 2 0 0 1 4 0v10-8a2 2 0 0 1 4 0v9-5a2 2 0 0 1 4 0v7c0 5-2 8-4 10z"/>
+        </symbol>
+    </svg>
+    <main class="game">
+        <header class="game-header">
+            <h1>가위바위보</h1>
+            <button class="secondary-button" id="theme-toggle" type="button" aria-pressed="false">다크 모드</button>
+            <p>가위, 바위, 보 중 하나를 골라 컴퓨터와 대결하세요.</p>
+        </header>
+
+        <section class="arena card" aria-label="대결">
+            <div class="match">
+                <div class="contestant">
+                    <h2>나</h2>
+                    <div class="hand-display" id="player-hand" aria-hidden="true">
+                        <span>?</span><svg class="hand-icon" hidden><use></use></svg>
+                    </div>
+                    <p id="player-choice">선택 전</p>
+                </div>
+                <span class="versus">VS</span>
+                <div class="contestant">
+                    <h2>컴퓨터</h2>
+                    <div class="hand-display" id="computer-hand" aria-hidden="true">
+                        <span>?</span><svg class="hand-icon" hidden><use></use></svg>
+                    </div>
+                    <p id="computer-choice">선택 전</p>
+                </div>
+            </div>
+            <p id="result" class="result" role="status" aria-atomic="true">가위, 바위, 보!</p>
+            <div class="choices" role="group" aria-label="가위바위보 선택">
+                <button type="button" data-choice="scissors"><svg class="hand-icon" aria-hidden="true"><use href="#hand-scissors"></use></svg>가위</button>
+                <button type="button" data-choice="rock"><svg class="hand-icon" aria-hidden="true"><use href="#hand-rock"></use></svg>바위</button>
+                <button type="button" data-choice="paper"><svg class="hand-icon" aria-hidden="true"><use href="#hand-paper"></use></svg>보</button>
+            </div>
+        </section>
+
+        <section class="records card" aria-labelledby="records-title">
+            <div class="records-header">
+                <h2 id="records-title">게임 전적</h2>
+                <button class="secondary-button" id="reset-records" type="button">전적 초기화</button>
+            </div>
+            <div class="records-body">
+                <div class="streak">
+                    <svg class="trophy" viewBox="0 0 88 56" aria-hidden="true">
+                        <g fill="currentColor">
+                            <path d="M24 49C10 46 5 36 8 25c4 2 6 6 5 10 1-4 3-6 5-7 2 5 0 9-1 10 3-2 6-2 8-1-1 4-4 6-7 6l7 3z"/>
+                            <path d="M24 49C10 46 5 36 8 25c4 2 6 6 5 10 1-4 3-6 5-7 2 5 0 9-1 10 3-2 6-2 8-1-1 4-4 6-7 6l7 3z" transform="translate(88 0) scale(-1 1)"/>
+                            <path d="M29 9h30v11a15 15 0 0 1-13 15v7h7v5H35v-5h7v-7a15 15 0 0 1-13-15z"/>
+                        </g>
+                        <path d="M29 13h-7v5a9 9 0 0 0 10 9m27-14h7v5a9 9 0 0 1-10 9" fill="none" stroke="currentColor" stroke-width="3"/>
+                    </svg>
+                    <dl><dt>최고 연승</dt><dd><span id="best-streak">0</span>연승</dd></dl>
+                </div>
+                <dl class="stats">
+                    <div><dt>전체</dt><dd id="total">0</dd></div>
+                    <div><dt>승리</dt><dd id="wins">0</dd></div>
+                    <div><dt>패배</dt><dd id="losses">0</dd></div>
+                    <div><dt>무승부</dt><dd id="draws">0</dd></div>
+                    <div><dt>승률</dt><dd id="win-rate">0%</dd></div>
+                </dl>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
