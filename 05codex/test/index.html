@@ -1,38 +1,63 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="ko">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>미니 게임</title>
+    <title>미니 게임존</title>
     <link rel="stylesheet" href="css/navigation.css">
     <link rel="stylesheet" href="css/home.css">
 </head>
 <body>
-    <nav class="site-nav" aria-label="공통 내비게이션">
-        <a href="index.html" aria-current="page">메인 페이지</a>
-        <a href="rps.html">가위바위보</a>
-        <a href="lotto.html">로또 번호 추첨기</a>
-    </nav>
+    <svg class="home-symbols" aria-hidden="true">
+        <symbol id="controller" viewBox="0 0 80 60">
+            <path d="M24 12h32c9 0 14 6 17 14l5 15c4 14-7 18-14 12L53 43H27L16 53C9 59-2 55 2 41l5-15c3-8 8-14 17-14Z" fill="currentColor"/>
+            <path d="M23 23v13m-6.5-6.5h13" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="58" cy="25" r="3" fill="#fff"/><circle cx="65" cy="32" r="3" fill="#fff"/>
+            <circle cx="51" cy="32" r="3" fill="#fff"/><circle cx="58" cy="39" r="3" fill="#fff"/>
+            <path d="M34 36h12" stroke="#c4d9ff" stroke-width="3" stroke-linecap="round"/>
+        </symbol>
+    </svg>
+
+    <header class="hub-bar">
+        <div class="hub-bar-inner">
+            <a class="hub-brand" href="index.html">
+                <svg aria-hidden="true"><use href="#controller"/></svg>
+                미니 게임존
+            </a>
+            <nav class="site-nav hub-nav" aria-label="공통 내비게이션">
+                <a href="index.html" aria-current="page">홈</a>
+                <a href="rps.html">가위바위보</a>
+                <a href="lotto.html">로또 추첨기</a>
+            </nav>
+        </div>
+    </header>
+
     <main class="game-hub">
         <header class="hub-header">
-            <h1>미니 게임</h1>
-            <p>가위바위보로 컴퓨터와 대결하거나, 로또 6/45 번호를 뽑아 보세요.</p>
+            <svg class="hero-controller" aria-hidden="true"><use href="#controller"/></svg>
+            <h1>간단하고 재미있는 게임</h1>
+            <p>원하는 게임을 선택하고 지금 바로 즐겨보세요!</p>
         </header>
         <div class="game-grid">
             <article class="game-card rps-card">
-                <div class="game-art hand-art" aria-hidden="true">
-                    <span>✊</span><span>✌️</span><span>✋</span>
-                </div>
-                <h2>가위바위보</h2>
-                <p>컴퓨터와 한 판 겨루고, 승률과 최고 연승 기록을 확인해 보세요.</p>
+                <svg class="game-art" viewBox="0 0 440 244" aria-hidden="true">
+                    <svg width="440" height="244" viewBox="243 415 385 241" overflow="hidden">
+                        <image href="jpg/ht.png" width="1536" height="1024"/>
+                    </svg>
+                </svg>
+                <h2>가위바위보 게임</h2>
+                <p>가위, 바위, 보로 컴퓨터와 승부를 겨뤄보세요!</p>
                 <a class="start-link" href="rps.html" aria-label="가위바위보 게임 시작">게임 시작</a>
             </article>
+
             <article class="game-card lotto-card">
-                <div class="game-art lotto-art" aria-hidden="true">
-                    <span>7</span><span>23</span><span>42</span>
-                </div>
+                <svg class="game-art" viewBox="0 0 440 244" aria-hidden="true">
+                    <svg width="440" height="244" viewBox="895 414 437 243" overflow="hidden">
+                        <image href="jpg/ht.png" width="1536" height="1024"/>
+                    </svg>
+                </svg>
                 <h2>로또 번호 추첨기</h2>
-                <p>자동·수동·반자동으로 로또 6/45 번호를 뽑고, 마음에 드는 조합을 저장해 보세요.</p>
+                <p>1부터 45까지! 행운의 로또 번호를 추첨해보세요!</p>
                 <a class="start-link" href="lotto.html" aria-label="로또 번호 추첨기 게임 시작">게임 시작</a>
             </article>
         </div>
